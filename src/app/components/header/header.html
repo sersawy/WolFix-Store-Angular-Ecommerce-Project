@@ -1,0 +1,77 @@
+<header id="header" class="header-modern">
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" routerLink="/">
+        <img src="./assets/imgs/logo.png" alt="WolFix Store" width="200" />
+      </a>
+
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#mainNav"
+        aria-controls="mainNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="/">
+              <i class="bi bi-house-door"></i>
+              Home
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+              <i class="bi bi-grid-3x3-gap"></i>
+              Categories
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a class="dropdown-item" href="index.html?category=Electronics">Electronics</a>
+              </li>
+              <li><a class="dropdown-item" href="index.html?category=Home">Home</a></li>
+
+              <li><a class="dropdown-item" href="index.html?category=Clothing">Clothing</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/contact">
+              <i class="bi bi-envelope"></i>
+              Contact
+            </a>
+          </li>
+        </ul>
+
+        <form class="search-container me-3" role="search" onsubmit="return false">
+          <div class="search-input-group">
+            <input
+              id="searchInput"
+              class="search-input"
+              type="search"
+              placeholder="Search products..."
+              aria-label="Search"
+            />
+            <i class="bi bi-search"></i>
+          </div>
+          <div id="searchSuggestions" class="search-suggestions"></div>
+        </form>
+
+        <div class="user-actions d-flex align-items-center gap-2">
+          <a routerLink="/cart" class="action-btn cart-btn" title="Shopping Cart">
+            <i class="bi bi-bag"></i>
+            <span id="cartCountBadge" class="badge">0</span>
+          </a>
+          <div id="authArea" class="auth-buttons d-flex align-items-center gap-2">
+            <app-btn-secondary routerLink="/login" text="Login"></app-btn-secondary>
+            <app-btn-primary routerLink="/signup" text="Sign Up"></app-btn-primary>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
