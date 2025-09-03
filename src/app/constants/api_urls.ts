@@ -1,7 +1,10 @@
 import { environment } from '../../environments/environment.development';
 
 export const API_URLS = {
-  products: `${environment.baseUrl}/products`,
-  login: `${environment.baseUrl}/auth/login`,
-  getByName: `${environment.baseUrl}/products/search`,
+  product: {
+    getALL: `${environment.baseUrl}/products`,
+    getById: `${environment.baseUrl}/products`,
+    getByCategory: `${environment.baseUrl}/products/category`,
+    getByBrand: `${environment.baseUrl}/products/brand`,
+  },
 };

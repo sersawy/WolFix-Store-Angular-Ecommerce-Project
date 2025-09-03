@@ -1,1 +1,1 @@
-export const environment = { production: false, baseUrl: '' };
+export const environment = { production: false, baseUrl: 'https://api.sersawy.com' };
