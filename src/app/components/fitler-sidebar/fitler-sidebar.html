@@ -1,0 +1,96 @@
+<div id="filterSidebar">
+  <div class="filter-header sticky-top bg-white">
+    <h3>
+      <i class="bi bi-funnel"></i>
+      Filters
+    </h3>
+    <button class="btn btn-link clear-filters" id="clearAllFilters">
+      <i class="bi bi-x-circle"></i>
+      Clear All
+    </button>
+  </div>
+  <form id="filterForm" class="filter-form">
+    <div class="filter-section">
+      <h4>Price Range</h4>
+      <div class="price-range-container">
+        <div class="price-slider">
+          <input type="range" name="minPriceSlider" id="minPriceSlider" class="range-input" />
+          <input type="range" name="maxPriceSlider" id="maxPriceSlider" class="range-input" />
+          <div class="slider-track"></div>
+        </div>
+        <div class="price-inputs">
+          <div class="price-input-group">
+            <span class="currency">$</span>
+            <input type="number" name="minPrice" id="minPrice" class="price-input" />
+          </div>
+          <span class="price-separator">-</span>
+          <div class="price-input-group">
+            <span class="currency">$</span>
+            <input type="number" name="maxPrice" id="maxPrice" class="price-input" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="filter-section">
+      <h4>Minimum Rating</h4>
+      <div class="rating-filter">
+        <div class="rating-options">
+          <label class="rating-option">
+            <input type="radio" name="rating" value="0" checked />
+            <span class="rating-display">Any Rating</span>
+          </label>
+          <label class="rating-option">
+            <input type="radio" name="rating" value="4" />
+            <span class="rating-display">
+              <span class="stars">★★★★☆</span>
+              4+ Stars
+            </span>
+          </label>
+          <label class="rating-option">
+            <input type="radio" name="rating" value="4.5" />
+            <span class="rating-display">
+              <span class="stars">★★★★★</span>
+              4.5+ Stars
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="filter-section">
+      <h4>Categories</h4>
+      <div class="filter-search">
+        <input type="text" placeholder="Search categories..." class="filter-search-input" />
+        <i class="bi bi-search"></i>
+      </div>
+      <div class="filter-options categories-filter"></div>
+    </div>
+
+    <div class="filter-section">
+      <h4>Brands</h4>
+      <div class="filter-search">
+        <input type="text" placeholder="Search brands..." class="filter-search-input" />
+        <i class="bi bi-search"></i>
+      </div>
+      <div class="filter-options brands-filter"></div>
+    </div>
+
+    <div class="filter-section">
+      <h4>Availability</h4>
+      <div class="rating-options">
+        <label class="rating-option">
+          <input type="radio" name="availability" value="all" checked />
+          <span class="option-text">ALL</span>
+        </label>
+        <label class="rating-option">
+          <input type="radio" name="availability" value="newArrival" />
+          <span class="option-text">New</span>
+        </label>
+        <label class="rating-option">
+          <input type="radio" name="availability" value="sale" />
+          <span class="option-text">On Sale</span>
+        </label>
+      </div>
+    </div>
+  </form>
+</div>

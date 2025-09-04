@@ -1,11 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { IProductsApi } from '../../models/iproducts-api';
+import { BtnPrimary } from '../buttons/btn-primary/btn-primary';
+import { BtnSecondary } from '../buttons/btn-secondary/btn-secondary';
+import { Rating } from '../rating/rating';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-product-card',
-  imports: [],
+  imports: [BtnPrimary, BtnSecondary, Rating, CurrencyPipe],
   templateUrl: './product-card.html',
-  styleUrl: './product-card.css'
+  styleUrl: './product-card.css',
 })
-export class ProductCard {
-
+export class ProductCard implements OnChanges {
+  @Input() product!: IProductsApi;
+  currentPrice!: number;
+  ngOnChanges(changes: SimpleChanges): void {
+    this.currentPrice = (this.product.price * (100 - this.product.sale)) / 100;
+  }
 }

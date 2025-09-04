@@ -1,1 +1,31 @@
-<p>product-card works!</p>
+<div class="product-card card h-100">
+  <div class="product-image">
+    <img [src]="product.image" class="card-img-top" [alt]="product.name" />
+    @if(product.sale){
+    <span class="product-badge">Sale</span>
+    }@else{
+    <span class="product-badge" style="background: var(--success-color)">New</span>
+    }
+  </div>
+  <div class="card-body d-flex flex-column">
+    <div class="product-meta">
+      <span class="product-category">{{ product.category }}</span>
+      <span class="product-brand">{{ product.brand }}</span>
+    </div>
+    <h3 class="product-title">{{ product.name }}</h3>
+    <div class="product-rating">
+      <app-rating [rating]="product.rating"></app-rating>
+    </div>
+    <div class="product-price">
+      <span>{{ currentPrice | currency }}</span>
+      @if(currentPrice!=product.price){
+      <span class="original-price mx-2">{{ product.price | currency }}</span>
+      <span class="discount-badge">{{ product.sale }}% OFF</span>
+      }
+    </div>
+    <div class="product-actions d-flex justify-content-between">
+      <app-btn-secondary text="Details"></app-btn-secondary>
+      <app-btn-primary text="Add to Cart"></app-btn-primary>
+    </div>
+  </div>
+</div>

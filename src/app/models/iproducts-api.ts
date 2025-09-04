@@ -10,10 +10,11 @@ export interface IProductsApi {
   name: string;
   brand: string;
   category: string;
-  price: string;
-  sale: string;
+  price: number;
+  sale: number;
   description: string;
   sliderImage?: string;
   stock: number;
-  rating: string;
+  rating: number;
+  image: string;
 }

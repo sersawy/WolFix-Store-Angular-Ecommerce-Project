@@ -12,4 +12,7 @@ export class ProductsApiService {
   getAllProducts(): Observable<IProductsAPIRes> {
     return this.http.get<IProductsAPIRes>(API_URLS.product.getALL);
   }
+  getAllSliderProducts(): Observable<IProductsAPIRes> {
+    return this.http.get<IProductsAPIRes>(API_URLS.product.getALL, { params: { hasSlider: 1 } });
+  }
 }
