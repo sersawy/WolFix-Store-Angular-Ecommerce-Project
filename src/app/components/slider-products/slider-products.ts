@@ -1,4 +1,4 @@
-import { Products } from './../../pages/products/products';
+import '@angular/localize/init';
 import { Component, Input, ViewChild } from '@angular/core';
 import {
   NgbCarousel,

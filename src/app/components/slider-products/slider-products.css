@@ -1,0 +1,43 @@
+.sliderContainer {
+  width: 92%;
+  max-width: 100rem;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--shadow-lg);
+  aspect-ratio: 20/7;
+}
+
+:host ::ng-deep ngb-carousel,
+:host ::ng-deep .carousel,
+:host ::ng-deep .carousel-inner,
+:host ::ng-deep .carousel-item {
+  height: 100%;
+}
+
+.slide {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slide > a,
+.picsum-img-wrapper {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+:host ::ng-deep .carousel-caption {
+  left: 0;
+  right: 0;
+}

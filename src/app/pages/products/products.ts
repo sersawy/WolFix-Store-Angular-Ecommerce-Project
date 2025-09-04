@@ -14,6 +14,7 @@ import { SliderProducts } from '../../components/slider-products/slider-products
 export class Products implements OnInit {
   productService = inject(ProductsApiService);
   products!: IProductsApi[];
+  sliderProducts!: IProductsApi[];
   total!: number;
   ngOnInit(): void {
     this.productService.getAllProducts().subscribe((data) => {
@@ -21,6 +22,8 @@ export class Products implements OnInit {
       this.total = data.total;
     });
 
-    this.productService.getAllSliderProducts().subscribe((data) => console.log(data));
+    this.productService
+      .getAllSliderProducts()
+      .subscribe((data) => (this.sliderProducts = data.products));
   }
 }
