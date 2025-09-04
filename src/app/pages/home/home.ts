@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
+import { ProductImageSlider } from '../../components/product-image-slider/product-image-slider';
 
 @Component({
   selector: 'app-home',
-  imports: [],
+  imports: [ProductImageSlider],
   templateUrl: './home.html',
-  styleUrl: './home.css'
+  styleUrl: './home.css',
 })
-export class Home {
-
-}
+export class Home {}
