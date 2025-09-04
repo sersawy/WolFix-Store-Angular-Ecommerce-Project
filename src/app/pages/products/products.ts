@@ -3,10 +3,11 @@ import { ProductsApiService } from '../../services/products-api-service';
 import { ProductCard } from '../../components/product-card/product-card';
 import { IProductsApi } from '../../models/iproducts-api';
 import { FitlerSidebar } from '../../components/fitler-sidebar/fitler-sidebar';
+import { SliderProducts } from '../../components/slider-products/slider-products';
 
 @Component({
   selector: 'app-products',
-  imports: [ProductCard, FitlerSidebar],
+  imports: [ProductCard, FitlerSidebar, SliderProducts],
   templateUrl: './products.html',
   styleUrl: './products.css',
 })
