@@ -13,8 +13,11 @@ import { Rating } from '../../components/rating/rating';
 import { ProductPrice } from '../../components/product-price/product-price';
 import { ProductCard } from '../../components/product-card/product-card';
 import { BtnPrimary } from '../../components/buttons/btn-primary/btn-primary';
-import { InputNumber } from 'primeng/inputnumber';
 import { FormsModule } from '@angular/forms';
+import { MenuItem } from 'primeng/api';
+import { Breadcrumb } from 'primeng/breadcrumb';
+import { RouterModule } from '@angular/router';
+import Material from '@primeuix/themes/material';
 
 @Component({
   selector: 'app-product-detail',
@@ -31,8 +34,9 @@ import { FormsModule } from '@angular/forms';
     ProductCard,
     RouterLink,
     BtnPrimary,
-    InputNumber,
     FormsModule,
+    Breadcrumb,
+    RouterModule,
   ],
   templateUrl: './product-detail.html',
   styleUrl: './product-detail.css',
@@ -66,4 +70,11 @@ export class ProductDetail implements OnInit {
     this.quantity -= 1;
     this.quantity = this.quantity <= 0 ? 0 : this.quantity;
   }
+  items: MenuItem[] = [
+    { label: 'Components' },
+    { label: 'Form' },
+    { label: 'InputText', routerLink: '/inputtext' },
+  ];
+
+  home: MenuItem = { icon: 'pi pi-home', routerLink: '/' };
 }
