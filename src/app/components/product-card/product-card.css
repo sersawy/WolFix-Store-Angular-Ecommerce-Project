@@ -92,35 +92,6 @@
   margin-top: auto;
 }
 
-.discount-badge {
-  display: none;
-  background: var(--danger-color);
-  color: white;
-  padding: 0.25rem 0.5rem;
-  border-radius: var(--border-radius-sm);
-  font-weight: 600;
-  font-size: 0.9rem;
-}
-.discount-badge:not(:empty) {
-  display: inline-block;
-}
-
-.current-price {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: var(--text-primary);
-}
-.product-price {
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: 1rem;
-}
-.original-price {
-  font-size: 0.7rem;
-  text-decoration: line-through;
-  color: var(--text-muted);
-}
 .product-actions {
   display: flex;
   gap: 0.75rem;

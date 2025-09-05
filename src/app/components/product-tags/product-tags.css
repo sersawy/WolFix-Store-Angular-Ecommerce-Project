@@ -1,0 +1,14 @@
+.product-tag {
+  background: var(--surface-color);
+  color: var(--text-secondary);
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--border-radius-lg);
+  font-size: 0.85rem;
+  transition: all var(--transition-fast);
+}
+
+.product-tag:hover {
+  background: var(--primary-color);
+  color: var(--secondary-color);
+  transform: translateY(-1px);
+}

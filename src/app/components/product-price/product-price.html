@@ -1,0 +1,11 @@
+<div class="product-price">
+  <span appIncreaseFont [increaseBy]="increaseBy">{{ currentPrice | currency }} </span>
+  @if(currentPrice!=product.price){
+  <span class="original-price mx-2" appIncreaseFont [increaseBy]="increaseBy">{{
+    product.price | currency
+  }}</span>
+  <span class="discount-badge" appIncreaseFont [increaseBy]="increaseBy"
+    >{{ product.sale }}% OFF</span
+  >
+  }
+</div>

@@ -2,14 +2,24 @@
   <p-galleria
     [value]="images"
     [responsiveOptions]="responsiveOptions"
-    [containerStyle]="{ 'max-width': '640px' }"
     [numVisible]="5"
+    [circular]="true"
+    [showIndicators]="false"
+    [showItemNavigatorsOnHover]="true"
+    [showItemNavigators]="true"
+    [autoPlay]="true"
   >
+    <!-- <p-galleria
+    [value]="images"
+    [responsiveOptions]="responsiveOptions"
+    [containerStyle]="{ 'max-width': '500px' }"
+    [numVisible]="5"
+  > -->
     <ng-template #item let-item>
-      <img [src]="item.itemImageSrc" style="width: 100%" />
+      <img [src]="item.itemImageSrc" style="width: 100%; display: block" />
     </ng-template>
     <ng-template #thumbnail let-item>
-      <img [src]="item.thumbnailImageSrc" />
+      <img [src]="item.thumbnailImageSrc" style="width: 100%; height: 80px; display: block" />
     </ng-template>
   </p-galleria>
 </div>

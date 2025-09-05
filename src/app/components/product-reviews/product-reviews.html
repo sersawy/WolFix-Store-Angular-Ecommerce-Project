@@ -1,10 +1,13 @@
+@for (review of reviews; track $index) {
+
 <div class="review-item">
   <div class="review-header">
     <div>
       <div class="reviewer-name">{{ review.name }}</div>
-      <div class="review-date">{{ review.date }}</div>
+      <div class="review-date">{{ review.date | date : 'MMMM d, y' }}</div>
     </div>
-    <app-rating [rating]="review.rating"></app-rating>
+    <app-rating [rating]="+review.rating"></app-rating>
   </div>
   <p class="review-text">{{ review.review }}</p>
 </div>
+}

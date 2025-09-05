@@ -1,0 +1,8 @@
+<div class="product-detail-meta">
+  @for (item of metaItems |keyvalue ; track item.key) {
+  <div class="meta-item">
+    <span class="meta-label">{{ item.key }}</span>
+    <span class="meta-value">{{ item.value }}</span>
+  </div>
+  }
+</div>

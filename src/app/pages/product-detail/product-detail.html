@@ -1,1 +1,86 @@
-<p>product-detail works!</p>
+<main class="container product-detail-container">
+  <nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+      <li class="breadcrumb-item breadcrumb-category">
+        <a class="product-category-name breadcrumb-product-category-name" href="index.html"></a>
+      </li>
+      <li class="breadcrumb-item product-name active" aria-current="page"></li>
+    </ol>
+  </nav>
+
+  <div class="product-detail-card">
+    @if(product.thumbnails){
+    <app-product-image-slider [images]="product.thumbnails"></app-product-image-slider>
+    }
+
+    <div class="product-info">
+      <div class="product-detail-category product-category-name">{{ product.category }}</div>
+      <span class="product-detail-brand">{{ product.brand }}</span>
+      <h1 class="product-detail-title product-name">{{ product.name }}</h1>
+
+      <div class="product-detail-rating">
+        <app-rating [rating]="product.rating"></app-rating>
+        <span class="rating-detail-count"> ({{ product.reviews?.length }}) reviews</span>
+      </div>
+
+      <div class="product-detail-price my-3">
+        <app-product-price [product]="product" [increaseBy]="3"></app-product-price>
+      </div>
+      <p class="product-description">
+        @if(product.description){
+        <app-product-desc [description]="product.description"></app-product-desc>
+        }
+      </p>
+
+      @if(product.metaItems){
+      <app-product-meta [metaItems]="product.metaItems"></app-product-meta>
+      }
+
+      <div class="product-tags">
+        @if(product.tags){
+        <app-product-tags [tags]="product.tags"></app-product-tags>
+        }
+      </div>
+
+      <div class="product-detail-actions">
+        <div class="quantity-selector">
+          <span class="quantity-label">Quantity:</span>
+          <div class="quantity-control">
+            <button class="quantity-btn" (click)="decreaseQty()">-</button>
+            <input type="number" class="quantity-input" step="1" [(ngModel)]="quantity" />
+            <button class="quantity-btn" (click)="increaseQty()">+</button>
+          </div>
+        </div>
+
+        <app-btn-primary content='<i class="bi bi-cart-plus"></i> Add to Cart'></app-btn-primary>
+      </div>
+    </div>
+  </div>
+
+  <div class="product-details-section">
+    @if(product.specItems){
+    <h2 class="section-title">Product Details</h2>
+    <app-product-spec [specItems]="product.specItems"></app-product-spec>
+    }
+  </div>
+
+  <div class="product-details-section">
+    <h2 class="section-title">Customer Reviews</h2>
+
+    @if(product.reviews){
+    <app-product-reviews [reviews]="product.reviews"></app-product-reviews>
+    }
+  </div>
+
+  <div class="product-details-section">
+    <h2 class="section-title">Related Products</h2>
+    <div class="related-products">
+      @for (product of relatedProducts; track product.id) {
+      <a routerLink="/product/{{ product.id }}" class="text-decoration-none">
+        <app-product-card [product]="product" [action]="false"></app-product-card>
+      </a>
+      }
+    </div>
+  </div>
+</main>

@@ -13,8 +13,28 @@ export interface IProductsApi {
   price: number;
   sale: number;
   description: string;
+  image: string;
   sliderImage?: string;
   stock: number;
   rating: number;
-  image: string;
+  newArrival: number;
+  thumbnails?: IThumbnail[];
+  reviews?: IReview[];
+  tags?: string[];
+  metaItems?: any[];
+  specItems?: any[];
+}
+
+export interface IReview {
+  name: string;
+  date: Date;
+  rating: number;
+  review: string;
+}
+
+export interface IThumbnail {
+  itemImageSrc: string;
+  thumbnailImageSrc: string;
+  alt: string;
+  title: string;
 }

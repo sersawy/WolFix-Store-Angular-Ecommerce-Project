@@ -1,0 +1,24 @@
+.product-detail-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  background: var(--surface-color);
+  border-radius: var(--border-radius-lg);
+  /* margin-bottom: 2rem; */
+  padding: 0.5rem;
+}
+.meta-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.meta-label {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.25rem;
+}
+
+.meta-value {
+  font-weight: 500;
+  color: var(--text-primary);
+}
