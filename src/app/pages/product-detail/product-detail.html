@@ -56,7 +56,10 @@
           </div>
         </div>
 
-        <app-btn-primary content='<i class="bi bi-cart-plus"></i> Add to Cart'></app-btn-primary>
+        <app-btn-primary
+          (click)="addToCart()"
+          content='<i class="bi bi-cart-plus"></i> Add to Cart'
+        ></app-btn-primary>
       </div>
     </div>
   </div>

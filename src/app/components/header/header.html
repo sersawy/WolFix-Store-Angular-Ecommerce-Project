@@ -64,10 +64,10 @@
         <div class="user-actions d-flex align-items-center gap-2">
           <a routerLink="/cart" class="action-btn cart-btn" title="Shopping Cart">
             <i class="bi bi-bag"></i>
-            <span id="cartCountBadge" class="badge">0</span>
+            <span id="cartCountBadge" class="badge">{{ cartService.getTotalQuantity() }}</span>
           </a>
           <div id="authArea" class="auth-buttons d-flex align-items-center gap-2">
-            <app-btn-secondary routerLink="/login" text="Login"></app-btn-secondary>
+            <app-btn-secondary routerLink="/login" content="Login"></app-btn-secondary>
             <app-btn-primary routerLink="/signup" content="Sign Up"></app-btn-primary>
           </div>
         </div>

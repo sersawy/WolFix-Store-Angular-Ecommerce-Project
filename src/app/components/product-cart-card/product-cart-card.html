@@ -1,0 +1,41 @@
+<tr>
+  <td>
+    <div class="d-flex align-items-center">
+      <img
+        src="{{ item.product.image }}"
+        alt="{{ item.product.name }}"
+        class="cart-item-image me-3"
+      />
+      <div>
+        <div class="cart-item-name">{{ item.product.name }}</div>
+        <div class="cart-item-category">{{ item.product.category }} • {{ item.product.brand }}</div>
+      </div>
+    </div>
+  </td>
+  <td class="cart-item-price">
+    {{ (item.product.price * (100 - item.product.sale)) / 100 | currency }}
+  </td>
+  <td>
+    <div class="cart-item-quantity">
+      <div class="quantity-control">
+        <button class="quantity-btn" (click)="decreaseQty()">-</button>
+        <input
+          type="number"
+          class="quantity-input"
+          [(ngModel)]="item.qty"
+          (ngModelChange)="updateQty()"
+          min="1"
+        />
+        <button class="quantity-btn" (click)="increaseQty()">+</button>
+      </div>
+    </div>
+  </td>
+  <td class="cart-item-subtotal">
+    {{ ((item.product.price * (100 - item.product.sale)) / 100) * item.qty | currency }}
+  </td>
+  <td>
+    <button class="cart-item-remove" (click)="removeItem()">
+      <i class="bi bi-x-lg"></i>
+    </button>
+  </td>
+</tr>

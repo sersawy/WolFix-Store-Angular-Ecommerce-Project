@@ -1,3 +1,4 @@
+import { Cart } from './../pages/cart/cart';
 export interface IProductsAPIRes {
   limit: number;
   products: IProductsApi[];
@@ -37,4 +38,8 @@ export interface IThumbnail {
   thumbnailImageSrc: string;
   alt: string;
   title: string;
+}
+export interface ICart {
+  product: IProductsApi;
+  qty: number;
 }

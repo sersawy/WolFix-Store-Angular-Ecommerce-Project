@@ -5,10 +5,10 @@ import { RouterLink } from '@angular/router';
   selector: 'app-btn-secondary',
   imports: [RouterLink],
   // templateUrl: './btn-secondary.html',
-  template: `<a class="btn btn-secondary" [routerLink]="routerLink">{{ text }}</a>`,
+  template: `<a class="btn btn-secondary" [routerLink]="routerLink" [innerHTML]="content"></a>`,
   styleUrl: './btn-secondary.css',
 })
 export class BtnSecondary {
   @Input() routerLink: string = '#';
-  @Input() text: string = '';
+  @Input() content: string = '';
 }

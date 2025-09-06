@@ -19,8 +19,11 @@
     <app-product-price [product]="product"></app-product-price>
     @if(action){
     <div class="product-actions d-flex justify-content-between">
-      <app-btn-secondary routerLink="/product/{{ product.id }}" text="Details"></app-btn-secondary>
-      <app-btn-primary content="Add to Cart"></app-btn-primary>
+      <app-btn-secondary
+        routerLink="/product/{{ product.id }}"
+        content="Details"
+      ></app-btn-secondary>
+      <app-btn-primary (click)="addToCart()" content="Add to Cart"></app-btn-primary>
     </div>
     }
   </div>

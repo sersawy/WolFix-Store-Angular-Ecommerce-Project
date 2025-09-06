@@ -18,6 +18,7 @@ import { MenuItem } from 'primeng/api';
 import { Breadcrumb } from 'primeng/breadcrumb';
 import { RouterModule } from '@angular/router';
 import Material from '@primeuix/themes/material';
+import { CartService } from '../../services/cart-service';
 
 @Component({
   selector: 'app-product-detail',
@@ -49,6 +50,8 @@ export class ProductDetail implements OnInit {
   quantity: number = 1;
   product: IProductsApi = {} as IProductsApi;
   relatedProducts: IProductsApi[] = [];
+  cartService = inject(CartService);
+
   ngOnInit(): void {
     this.activateRoute.paramMap.subscribe((params) => {
       this.id = Number(params.get('id'));
@@ -69,6 +72,10 @@ export class ProductDetail implements OnInit {
   decreaseQty() {
     this.quantity -= 1;
     this.quantity = this.quantity <= 0 ? 0 : this.quantity;
+  }
+  addToCart() {
+    this.cartService.add(this.product, this.quantity);
+    this.quantity = 1;
   }
   items: MenuItem[] = [
     { label: 'Components' },

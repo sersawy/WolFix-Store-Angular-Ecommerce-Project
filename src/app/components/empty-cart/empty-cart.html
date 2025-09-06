@@ -1,0 +1,21 @@
+<div class="empty-cart-container">
+  <div class="empty-cart-icon">
+    <i class="bi bi-cart-x"></i>
+  </div>
+  <h2 class="empty-cart-title">Your cart is empty</h2>
+  <p class="empty-cart-message">
+    Looks like you haven't added any items to your cart yet. Browse our collection and find
+    something you love!
+  </p>
+  <div class="empty-cart-actions">
+    <app-btn-primary
+      routerLink="/"
+      content='<i class="bi bi-arrow-left"></i> Continue Shopping'
+    ></app-btn-primary>
+
+    <app-btn-secondary
+      routerLink="/products"
+      content='<i class="bi bi-grid"></i> Browse Products'
+    ></app-btn-secondary>
+  </div>
+</div>
