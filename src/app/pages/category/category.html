@@ -1,5 +1,20 @@
-<app-products-container
-  [products]="products"
-  [total]="total"
-  [title]="category!"
-></app-products-container>
+<main class="container-fluid my-4">
+  <div class="row m-lg-5">
+    <div class="col-lg-1"></div>
+    <aside class="col-lg-2 filter-sidebar">
+      <app-fitler-sidebar
+        [brands]="brands"
+        [minPrice]="minPrice"
+        [maxPrice]="maxPrice"
+        (filtersChanged)="onFiltersChanged($event)"
+      ></app-fitler-sidebar>
+    </aside>
+    <section class="col-lg-8 products-section mx-lg-4">
+      <app-products-container
+        [products]="filteredProducts"
+        [total]="total"
+        [title]="category!"
+      ></app-products-container>
+    </section>
+  </div>
+</main>

@@ -1,0 +1,19 @@
+.filter-sidebar {
+  background: var(--card-background);
+  border-radius: var(--border-radius-lg);
+  padding: 0 1.5rem 1.5rem;
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 100px;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+}
+
+@media (max-width: 991px) {
+  .filter-sidebar {
+    display: none;
+  }
+  .filter-toggle-mobile {
+    display: flex;
+  }
+}

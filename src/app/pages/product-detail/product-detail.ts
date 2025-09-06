@@ -19,6 +19,7 @@ import { Breadcrumb } from 'primeng/breadcrumb';
 import { RouterModule } from '@angular/router';
 import Material from '@primeuix/themes/material';
 import { CartService } from '../../services/cart-service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-product-detail',
@@ -46,23 +47,25 @@ export class ProductDetail implements OnInit {
   private productsService = inject(ProductsApiService);
   private activateRoute = inject(ActivatedRoute);
   private router = inject(Router);
+  private spinner = inject(NgxSpinnerService);
+
   id!: number;
   quantity: number = 1;
   product: IProductsApi = {} as IProductsApi;
   relatedProducts: IProductsApi[] = [];
   cartService = inject(CartService);
+  items: MenuItem[] = [];
+  home: MenuItem = { icon: 'bi bi-house-door', routerLink: '/' };
 
   ngOnInit(): void {
     this.activateRoute.paramMap.subscribe((params) => {
+      this.spinner.show();
       this.id = Number(params.get('id'));
       if (!this.id) this.router.navigate(['/404']);
       this.productsService.getProductById(this.id).subscribe((data) => {
         this.product = data;
-        this.productsService.getAllProductsByCategory(this.product.category).subscribe((data) => {
-          this.relatedProducts = data.products;
-          this.relatedProducts = this.relatedProducts.sort(() => Math.random() - 0.5).slice(0, 8);
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+        this.setBreadcrumb();
+        this.getRelatedProducts();
       });
     });
   }
@@ -77,11 +80,18 @@ export class ProductDetail implements OnInit {
     this.cartService.add(this.product, this.quantity);
     this.quantity = 1;
   }
-  items: MenuItem[] = [
-    { label: 'Components' },
-    { label: 'Form' },
-    { label: 'InputText', routerLink: '/inputtext' },
-  ];
-
-  home: MenuItem = { icon: 'pi pi-home', routerLink: '/' };
+  setBreadcrumb() {
+    this.items = [
+      { label: this.product.category, routerLink: `/category/${this.product.category}` },
+      { label: this.product.name },
+    ];
+  }
+  getRelatedProducts() {
+    this.productsService.getAllProductsByCategory(this.product.category).subscribe((data) => {
+      this.relatedProducts = data.products;
+      this.relatedProducts = this.relatedProducts.sort(() => Math.random() - 0.5).slice(0, 8);
+      this.spinner.hide();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
 }

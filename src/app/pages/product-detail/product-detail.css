@@ -98,6 +98,15 @@
   -webkit-appearance: none;
   margin: 0;
 }
+:host ::ng-deep .p-breadcrumb {
+  background-color: transparent;
+}
+:host ::ng-deep .p-breadcrumb-item-label {
+  color: #64748b;
+}
+:host ::ng-deep .p-breadcrumb-item-link:hover .p-breadcrumb-item-label {
+  color: #334155;
+}
 @media (min-width: 992px) {
   .product-detail-card {
     display: grid;

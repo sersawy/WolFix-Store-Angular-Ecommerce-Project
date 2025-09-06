@@ -5,16 +5,24 @@
   <div class="row m-lg-5">
     <div class="col-lg-1"></div>
     <aside class="col-lg-2 filter-sidebar">
-      <app-fitler-sidebar></app-fitler-sidebar>
+      <app-fitler-sidebar
+        [categories]="categories"
+        [brands]="brands"
+        [minPrice]="minPrice"
+        [maxPrice]="maxPrice"
+        (filtersChanged)="onFiltersChanged($event)"
+      ></app-fitler-sidebar>
     </aside>
     <section class="col-lg-8 products-section mx-lg-4">
       <app-products-container
-        [products]="products"
+        [products]="filteredProducts"
         [total]="total"
         title="Products"
       ></app-products-container>
-
-      <!-- <div class="products-header">
+    </section>
+  </div>
+</main>
+<!-- <div class="products-header">
         <div class="products-title">
           <h2>Products</h2>
           <div id="productsCount" class="products-count">{{ total }} results</div>
@@ -48,6 +56,3 @@
         }
       </div>
       <nav class="pagination-container"></nav> -->
-    </section>
-  </div>
-</main>

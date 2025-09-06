@@ -3,6 +3,10 @@ export interface IProductsAPIRes {
   products: IProductsApi[];
   offset: number;
   total: number;
+  minPrice: number;
+  maxPrice: number;
+  categories: IItems;
+  brands: IItems;
 }
 
 export interface IProductsApi {
@@ -43,6 +47,23 @@ export interface ICart {
   qty: number;
 }
 export interface ICategoriesAPIRes {
-  categories: string[];
+  categories: ICategory[];
   total: number;
+}
+export interface ICategory {
+  category: string;
+  brands: string[];
+  totalBrands: number;
+}
+export interface IItems {
+  items: string[];
+  total: number;
+}
+export interface IFilter {
+  minPrice?: number;
+  maxPrice?: number;
+  rating?: number;
+  categories?: string[];
+  brands?: string[];
+  availability?: string;
 }

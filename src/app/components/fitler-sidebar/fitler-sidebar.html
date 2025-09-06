@@ -14,19 +14,51 @@
       <h4>Price Range</h4>
       <div class="price-range-container">
         <div class="price-slider">
-          <input type="range" name="minPriceSlider" id="minPriceSlider" class="range-input" />
-          <input type="range" name="maxPriceSlider" id="maxPriceSlider" class="range-input" />
+          <input
+            type="range"
+            [(ngModel)]="filters.minPrice"
+            (ngModelChange)="onFiltersChange()"
+            name="minPriceSlider"
+            [min]="initialMinPrice"
+            [max]="initialMaxPrice"
+            class="range-input"
+          />
+          <input
+            type="range"
+            [(ngModel)]="filters.maxPrice"
+            (ngModelChange)="onFiltersChange()"
+            name="maxPriceSlider"
+            [min]="initialMinPrice"
+            [max]="initialMaxPrice"
+            class="range-input"
+          />
           <div class="slider-track"></div>
         </div>
         <div class="price-inputs">
           <div class="price-input-group">
             <span class="currency">$</span>
-            <input type="number" name="minPrice" id="minPrice" class="price-input" />
+            <input
+              type="number"
+              [(ngModel)]="filters.minPrice"
+              (ngModelChange)="onFiltersChange()"
+              name="minPrice"
+              [min]="initialMinPrice"
+              [max]="initialMaxPrice"
+              class="price-input"
+            />
           </div>
           <span class="price-separator">-</span>
           <div class="price-input-group">
             <span class="currency">$</span>
-            <input type="number" name="maxPrice" id="maxPrice" class="price-input" />
+            <input
+              type="number"
+              [(ngModel)]="filters.maxPrice"
+              (ngModelChange)="onFiltersChange()"
+              name="maxPrice"
+              [min]="initialMinPrice"
+              [max]="initialMaxPrice"
+              class="price-input"
+            />
           </div>
         </div>
       </div>
@@ -36,18 +68,37 @@
       <div class="rating-filter">
         <div class="rating-options">
           <label class="rating-option">
-            <input type="radio" name="rating" value="0" checked />
+            <input
+              type="radio"
+              [(ngModel)]="filters.rating"
+              (ngModelChange)="onFiltersChange()"
+              name="rating"
+              [value]="0"
+              checked
+            />
             <span class="rating-display">Any Rating</span>
           </label>
           <label class="rating-option">
-            <input type="radio" name="rating" value="4" />
+            <input
+              type="radio"
+              [(ngModel)]="filters.rating"
+              (ngModelChange)="onFiltersChange()"
+              name="rating"
+              [value]="4"
+            />
             <span class="rating-display">
               <span class="stars">★★★★☆</span>
               4+ Stars
             </span>
           </label>
           <label class="rating-option">
-            <input type="radio" name="rating" value="4.5" />
+            <input
+              type="radio"
+              [(ngModel)]="filters.rating"
+              (ngModelChange)="onFiltersChange()"
+              name="rating"
+              [value]="4.5"
+            />
             <span class="rating-display">
               <span class="stars">★★★★★</span>
               4.5+ Stars
@@ -56,38 +107,94 @@
         </div>
       </div>
     </div>
-
+    @if(categories.total>1){
     <div class="filter-section">
       <h4>Categories</h4>
       <div class="filter-search">
-        <input type="text" placeholder="Search categories..." class="filter-search-input" />
+        <input
+          type="text"
+          placeholder="Search categories..."
+          (input)="onCategorySearch($event.target.value)"
+          class="filter-search-input"
+        />
         <i class="bi bi-search"></i>
       </div>
-      <div class="filter-options categories-filter"></div>
+      <div class="filter-options categories-filter">
+        @for (item of filteredCategories; track $index) {
+        <label class="filter-option">
+          <input
+            type="checkbox"
+            [checked]="filters.categories.includes(item)"
+            name="category-{{ item }}"
+            (change)="toggleArrayValue('categories', item, $event.target.checked)"
+          />
+          <span class="checkmark"></span>
+          <span class="option-text">{{ item }}</span>
+        </label>
+        }
+      </div>
     </div>
-
+    } @if(brands.total>1){
     <div class="filter-section">
       <h4>Brands</h4>
       <div class="filter-search">
-        <input type="text" placeholder="Search brands..." class="filter-search-input" />
+        <input
+          type="text"
+          placeholder="Search brands..."
+          (input)="onBrandSearch($event.target.value)"
+          class="filter-search-input"
+        />
         <i class="bi bi-search"></i>
       </div>
-      <div class="filter-options brands-filter"></div>
+      <div class="filter-options brands-filter">
+        @for (item of filteredBrands; track $index) {
+        <label class="filter-option">
+          <input
+            type="checkbox"
+            [checked]="filters.brands.includes(item)"
+            name="brand-{{ item }}"
+            (change)="toggleArrayValue('brands', item, $event.target.checked)"
+          />
+          <span class="checkmark"></span>
+          <span class="option-text">{{ item }}</span>
+        </label>
+        }
+      </div>
     </div>
+    }
 
     <div class="filter-section">
       <h4>Availability</h4>
       <div class="rating-options">
         <label class="rating-option">
-          <input type="radio" name="availability" value="all" checked />
+          <input
+            type="radio"
+            name="availability"
+            [(ngModel)]="filters.availability"
+            (ngModelChange)="onFiltersChange()"
+            value="all"
+            checked
+          />
           <span class="option-text">ALL</span>
         </label>
         <label class="rating-option">
-          <input type="radio" name="availability" value="newArrival" />
+          <input
+            type="radio"
+            name="availability"
+            [(ngModel)]="filters.availability"
+            (ngModelChange)="onFiltersChange()"
+            value="newArrival"
+          />
           <span class="option-text">New</span>
         </label>
         <label class="rating-option">
-          <input type="radio" name="availability" value="sale" />
+          <input
+            type="radio"
+            name="availability"
+            [(ngModel)]="filters.availability"
+            (ngModelChange)="onFiltersChange()"
+            value="sale"
+          />
           <span class="option-text">On Sale</span>
         </label>
       </div>
