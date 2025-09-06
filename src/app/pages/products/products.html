@@ -8,7 +8,13 @@
       <app-fitler-sidebar></app-fitler-sidebar>
     </aside>
     <section class="col-lg-8 products-section mx-lg-4">
-      <div class="products-header">
+      <app-products-container
+        [products]="products"
+        [total]="total"
+        title="Products"
+      ></app-products-container>
+
+      <!-- <div class="products-header">
         <div class="products-title">
           <h2>Products</h2>
           <div id="productsCount" class="products-count">{{ total }} results</div>
@@ -41,7 +47,7 @@
         </div>
         }
       </div>
-      <nav class="pagination-container"></nav>
+      <nav class="pagination-container"></nav> -->
     </section>
   </div>
 </main>

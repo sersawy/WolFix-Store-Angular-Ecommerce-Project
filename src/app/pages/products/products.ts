@@ -4,10 +4,11 @@ import { ProductCard } from '../../components/product-card/product-card';
 import { IProductsApi } from '../../models/iproducts-api';
 import { FitlerSidebar } from '../../components/fitler-sidebar/fitler-sidebar';
 import { SliderProducts } from '../../components/slider-products/slider-products';
+import { ProductsContainer } from '../../components/products-container/products-container';
 
 @Component({
   selector: 'app-products',
-  imports: [ProductCard, FitlerSidebar, SliderProducts],
+  imports: [ProductCard, FitlerSidebar, SliderProducts, ProductsContainer],
   templateUrl: './products.html',
   styleUrl: './products.css',
 })

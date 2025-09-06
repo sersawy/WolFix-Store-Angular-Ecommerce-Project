@@ -6,5 +6,6 @@ export const API_URLS = {
     getById: `${environment.baseUrl}/products`,
     getByCategory: `${environment.baseUrl}/products/category`,
     getByBrand: `${environment.baseUrl}/products/brand`,
+    getAllCategories: `${environment.baseUrl}/products/categories`,
   },
 };
