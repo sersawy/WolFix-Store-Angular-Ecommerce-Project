@@ -43,6 +43,8 @@ export class ProductsApiService {
     if (filters.maxPrice) params = params.set('maxPrice', filters.maxPrice);
     if (filters.rating) params = params.set('rating', filters.rating);
     if (filters.availability) params = params.set('availability', filters.availability);
+    if (filters.search) params = params.set('search', filters.search);
+    if (filters.sort) params = params.set('sort', filters.sort);
 
     if (filters.categories) {
       filters.categories.forEach((cat: string) => {

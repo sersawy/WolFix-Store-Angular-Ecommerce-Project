@@ -6,10 +6,11 @@
     </div>
     <div class="products-controls">
       <div class="sort-container">
-        <select id="sortBy" class="sort-select">
+        <select id="sortBy" class="sort-select" [(ngModel)]="sortType" (change)="onSort()">
           <option value="relevance">Sort by Relevance</option>
           <option value="price_asc">Price: Low to High</option>
           <option value="price_desc">Price: High to Low</option>
+          <option value="rating_asc">Rating: Low to High</option>
           <option value="rating_desc">Rating: High to Low</option>
           <option value="name_asc">Name: A to Z</option>
           <option value="name_desc">Name: Z to A</option>

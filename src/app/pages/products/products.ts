@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { ProductsApiService } from '../../services/products-api-service';
 import { ProductCard } from '../../components/product-card/product-card';
 import { IFilter, IItems, IProductsApi } from '../../models/iproducts-api';
@@ -6,15 +6,18 @@ import { FitlerSidebar } from '../../components/fitler-sidebar/fitler-sidebar';
 import { SliderProducts } from '../../components/slider-products/slider-products';
 import { ProductsContainer } from '../../components/products-container/products-container';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { SearchService } from '../../services/search-service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-products',
-  imports: [ProductCard, FitlerSidebar, SliderProducts, ProductsContainer],
+  imports: [FitlerSidebar, SliderProducts, ProductsContainer],
   templateUrl: './products.html',
   styleUrl: './products.css',
 })
-export class Products implements OnInit {
+export class Products implements OnInit, OnDestroy {
   productService = inject(ProductsApiService);
+  searchService = inject(SearchService);
   products!: IProductsApi[];
   filteredProducts!: IProductsApi[];
   categories: IItems = {} as IItems;
@@ -23,6 +26,8 @@ export class Products implements OnInit {
   total!: number;
   minPrice!: number;
   maxPrice!: number;
+  filterData: IFilter = {} as IFilter;
+  private destroy$ = new Subject<void>();
   private spinner = inject(NgxSpinnerService);
 
   ngOnInit(): void {
@@ -30,15 +35,18 @@ export class Products implements OnInit {
       this.getAllProducts();
       this.sliderProducts = data.products;
     });
+    this.searchService.searchTerm$.pipe(takeUntil(this.destroy$)).subscribe((searchTerm) => {
+      this.filterData.search = searchTerm;
+      this.getAllProducts(20, 0, this.filterData);
+    });
   }
   onFiltersChanged(filters: IFilter) {
+    this.filterData = filters;
     this.getAllProducts(20, 0, filters);
   }
   getAllProducts(limit: number = 20, offset: number = 0, filters: IFilter = {}) {
     this.spinner.show();
     this.productService.getAllProducts(limit, offset, filters).subscribe((data) => {
-      console.log(data);
-
       this.products = data.products;
       this.filteredProducts = [...this.products];
       this.categories = data.categories;
@@ -48,5 +56,13 @@ export class Products implements OnInit {
       this.maxPrice = data.maxPrice;
       this.spinner.hide();
     });
+  }
+  onSortChanged(sort: string) {
+    this.filterData.sort = sort;
+    this.getAllProducts(20, 0, this.filterData);
+  }
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

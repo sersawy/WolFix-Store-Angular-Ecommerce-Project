@@ -57,7 +57,6 @@ export class FitlerSidebar implements OnChanges {
     this.filters.maxPrice = this.maxPrice;
     this.initialMinPrice = this.minPrice;
     this.initialMaxPrice = this.maxPrice;
-    console.log(this.initialMinPrice, this.initialMaxPrice);
   }
   onCategorySearch(term: string) {
     this.filteredCategories = this.categories.items.filter((item) =>

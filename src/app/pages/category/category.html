@@ -14,6 +14,7 @@
         [products]="filteredProducts"
         [total]="total"
         [title]="category!"
+        (sortChanged)="onSortChanged($event)"
       ></app-products-container>
     </section>
   </div>

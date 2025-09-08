@@ -46,20 +46,9 @@
             </a>
           </li>
         </ul>
-
-        <form class="search-container me-3" role="search" onsubmit="return false">
-          <div class="search-input-group">
-            <input
-              id="searchInput"
-              class="search-input"
-              type="search"
-              placeholder="Search products..."
-              aria-label="Search"
-            />
-            <i class="bi bi-search"></i>
-          </div>
-          <div id="searchSuggestions" class="search-suggestions"></div>
-        </form>
+        <div class="search-container me-3">
+          <app-search-bar></app-search-bar>
+        </div>
 
         <div class="user-actions d-flex align-items-center gap-2">
           <a routerLink="/cart" class="action-btn cart-btn" title="Shopping Cart">

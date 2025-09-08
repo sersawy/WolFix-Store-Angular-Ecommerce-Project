@@ -66,4 +66,6 @@ export interface IFilter {
   categories?: string[];
   brands?: string[];
   availability?: string;
+  search?: string;
+  sort?: string;
 }

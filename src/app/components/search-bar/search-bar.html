@@ -1,0 +1,14 @@
+<form role="search" (ngSubmit)="onSearch()">
+  <div class="search-input-group">
+    <input
+      name="searchInput"
+      class="search-input"
+      type="search"
+      placeholder="Search products..."
+      aria-label="Search"
+      [(ngModel)]="searchTerm"
+    />
+    <i class="bi bi-search" role="button" (click)="onSearch()"></i>
+  </div>
+  <div id="searchSuggestions" class="search-suggestions"></div>
+</form>
