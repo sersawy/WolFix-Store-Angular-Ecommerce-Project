@@ -69,4 +69,19 @@ export class FitlerSidebar implements OnChanges {
       item.toLowerCase().includes(term.toLowerCase())
     );
   }
+  resetFilter() {
+    this.filters = {
+      minPrice: this.initialMinPrice,
+      maxPrice: this.initialMaxPrice,
+      rating: 0,
+      categories: [],
+      brands: [],
+      availability: 'all',
+    };
+
+    this.filteredCategories = this.categories.items;
+    this.filteredBrands = this.brands.items;
+
+    this.onFiltersChange();
+  }
 }
