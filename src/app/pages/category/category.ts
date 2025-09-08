@@ -7,6 +7,7 @@ import { FitlerSidebar } from '../../components/fitler-sidebar/fitler-sidebar';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { SearchService } from '../../services/search-service';
 import { Subject, takeUntil } from 'rxjs';
+import { IPagination } from '../../models/ipagination';
 
 @Component({
   selector: 'app-category',
@@ -27,26 +28,32 @@ export class Category implements OnInit, OnDestroy {
   minPrice!: number;
   maxPrice!: number;
   filterData: IFilter = {} as IFilter;
+  pagination: IPagination = { limit: 5, offset: 0 };
   category = this.activateRoute.snapshot.paramMap.get('category');
   private destroy$ = new Subject<void>();
   ngOnInit(): void {
     if (!this.category) return;
-    this.getAllProducts(this.category);
+    this.getAllProducts();
     this.searchService.searchTerm$.pipe(takeUntil(this.destroy$)).subscribe((searchTerm) => {
       this.filterData.search = searchTerm;
       if (!this.category) return;
-      this.getAllProducts(this.category, 20, 0, this.filterData);
+      this.getAllProducts();
     });
   }
   onFiltersChanged(filters: IFilter) {
     this.filterData = filters;
     if (!this.category) return;
-    this.getAllProducts(this.category, 20, 0, filters);
+    this.getAllProducts();
   }
-  getAllProducts(category: string, limit: number = 20, offset: number = 0, filters: IFilter = {}) {
+  getAllProducts() {
     this.spinner.show();
     this.productService
-      .getAllProductsByCategory(category, limit, offset, filters)
+      .getAllProductsByCategory(
+        this.category!,
+        this.pagination.limit,
+        this.pagination.offset,
+        this.filterData
+      )
       .subscribe((data) => {
         this.products = data.products;
         this.filteredProducts = [...this.products];
@@ -60,7 +67,11 @@ export class Category implements OnInit, OnDestroy {
   onSortChanged(sort: string) {
     this.filterData.sort = sort;
     if (!this.category) return;
-    this.getAllProducts(this.category, 20, 0, this.filterData);
+    this.getAllProducts();
+  }
+  onPageChanged(pagination: IPagination) {
+    this.pagination = pagination;
+    this.getAllProducts();
   }
   ngOnDestroy(): void {
     this.destroy$.next();

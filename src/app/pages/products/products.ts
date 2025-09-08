@@ -8,6 +8,7 @@ import { ProductsContainer } from '../../components/products-container/products-
 import { NgxSpinnerService } from 'ngx-spinner';
 import { SearchService } from '../../services/search-service';
 import { Subject, takeUntil } from 'rxjs';
+import { IPagination } from '../../models/ipagination';
 
 @Component({
   selector: 'app-products',
@@ -27,6 +28,7 @@ export class Products implements OnInit, OnDestroy {
   minPrice!: number;
   maxPrice!: number;
   filterData: IFilter = {} as IFilter;
+  pagination: IPagination = { limit: 5, offset: 0 };
   private destroy$ = new Subject<void>();
   private spinner = inject(NgxSpinnerService);
 
@@ -37,29 +39,35 @@ export class Products implements OnInit, OnDestroy {
     });
     this.searchService.searchTerm$.pipe(takeUntil(this.destroy$)).subscribe((searchTerm) => {
       this.filterData.search = searchTerm;
-      this.getAllProducts(20, 0, this.filterData);
+      this.getAllProducts();
     });
   }
   onFiltersChanged(filters: IFilter) {
     this.filterData = filters;
-    this.getAllProducts(20, 0, filters);
+    this.getAllProducts();
   }
-  getAllProducts(limit: number = 20, offset: number = 0, filters: IFilter = {}) {
+  getAllProducts() {
     this.spinner.show();
-    this.productService.getAllProducts(limit, offset, filters).subscribe((data) => {
-      this.products = data.products;
-      this.filteredProducts = [...this.products];
-      this.categories = data.categories;
-      this.brands = data.brands;
-      this.total = data.total;
-      this.minPrice = data.minPrice;
-      this.maxPrice = data.maxPrice;
-      this.spinner.hide();
-    });
+    this.productService
+      .getAllProducts(this.pagination.limit, this.pagination.offset, this.filterData)
+      .subscribe((data) => {
+        this.products = data.products;
+        this.filteredProducts = [...this.products];
+        this.categories = data.categories;
+        this.brands = data.brands;
+        this.total = data.total;
+        this.minPrice = data.minPrice;
+        this.maxPrice = data.maxPrice;
+        this.spinner.hide();
+      });
   }
   onSortChanged(sort: string) {
     this.filterData.sort = sort;
-    this.getAllProducts(20, 0, this.filterData);
+    this.getAllProducts();
+  }
+  onPageChanged(pagination: IPagination) {
+    this.pagination = pagination;
+    this.getAllProducts();
   }
   ngOnDestroy(): void {
     this.destroy$.next();

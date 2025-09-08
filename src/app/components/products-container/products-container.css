@@ -53,3 +53,52 @@
   justify-content: center;
   margin-top: 2rem !important;
 }
+:host ::ng-deep .p-paginator {
+  gap: 0.5rem;
+  background-color: transparent;
+}
+
+:host ::ng-deep .p-paginator-page,
+:host ::ng-deep .p-paginator-page .p-paginator-page-link,
+:host ::ng-deep .p-paginator-first,
+:host ::ng-deep .p-paginator-prev,
+:host ::ng-deep .p-paginator-next,
+:host ::ng-deep .p-paginator-last {
+  padding: 0.75rem 1rem;
+  background: var(--card-background);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  text-decoration: none;
+  border-radius: var(--border-radius);
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+}
+
+:host ::ng-deep .p-paginator-page:not(.p-highlight):hover,
+:host ::ng-deep .p-paginator-first:not(.p-disabled):hover,
+:host ::ng-deep .p-paginator-prev:not(.p-disabled):hover,
+:host ::ng-deep .p-paginator-next:not(.p-disabled):hover,
+:host ::ng-deep .p-paginator-last:not(.p-disabled):hover {
+  background: var(--hover-color) !important;
+  color: var(--text-primary) !important;
+}
+
+:host ::ng-deep .p-paginator-page.p-highlight,
+:host ::ng-deep .p-paginator-page-selected,
+:host ::ng-deep .p-paginator-rpp-dropdown,
+:host ::ng-deep .p-select-label {
+  background: var(--primary-color) !important;
+  color: var(--secondary-color) !important;
+  border-color: var(--primary-color) !important;
+}
+
+:host ::ng-deep .p-paginator-first.p-disabled,
+:host ::ng-deep .p-paginator-prev.p-disabled,
+:host ::ng-deep .p-paginator-next.p-disabled,
+:host ::ng-deep .p-paginator-last.p-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

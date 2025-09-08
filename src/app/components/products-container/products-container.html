@@ -33,5 +33,20 @@
     </div>
     }
   </div>
-  <nav class="pagination-container"></nav>
+  <nav class="pagination-container">
+    <p-paginator
+      (onPageChange)="onPageChange($event)"
+      [first]="first"
+      [rows]="rows"
+      [totalRecords]="total"
+      [rowsPerPageOptions]="[5, 10, 20, 30]"
+      style="
+        --p-paginator-nav-button-border-radius: var(--border-radius);
+        --p-select-option-selected-focus-background: var(--primary-color);
+        --p-select-option-selected-background: var(--primary-color);
+        --p-select-option-selected-focus-color: var(--secondary-color);
+        --p-select-option-selected-color: var(--secondary-color);
+      "
+    />
+  </nav>
 </div>
