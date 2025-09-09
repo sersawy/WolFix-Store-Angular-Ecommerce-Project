@@ -1,6 +1,7 @@
 import {
   ApplicationConfig,
   importProvidersFrom,
+  inject,
   provideBrowserGlobalErrorListeners,
   provideZoneChangeDetection,
 } from '@angular/core';
@@ -17,7 +18,8 @@ import Aura from '@primeuix/themes/aura';
 import Lara from '@primeuix/themes/lara';
 import Material from '@primeuix/themes/material';
 import Nora from '@primeuix/themes/nora';
-
+import { provideAppInitializer } from '@angular/core';
+import { AuthService } from './services/auth-service';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
@@ -35,6 +37,10 @@ export const appConfig: ApplicationConfig = {
       closeButton: true,
       // preventDuplicates: true,
       // countDuplicates: true,
+    }),
+    provideAppInitializer(() => {
+      const auth = inject(AuthService);
+      return auth.checkToken();
     }),
   ],
 };

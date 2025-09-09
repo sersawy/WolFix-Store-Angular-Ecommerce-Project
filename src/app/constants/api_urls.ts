@@ -8,4 +8,9 @@ export const API_URLS = {
     getByBrand: `${environment.baseUrl}/products/brand`,
     getAllCategories: `${environment.baseUrl}/products/categories`,
   },
+  auth: {
+    login: `${environment.baseUrl}/auth/?action=login`,
+    register: `${environment.baseUrl}/auth/?action=register`,
+    verify: `${environment.baseUrl}/auth/?action=verify`,
+  },
 };

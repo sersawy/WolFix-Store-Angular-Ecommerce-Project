@@ -1,1 +1,76 @@
-<p>login works!</p>
+<main class="container my-5">
+  <div class="login-container">
+    <div class="login-header">
+      <h2>Welcome Back</h2>
+      <p>Sign in to your WolFix Store account</p>
+    </div>
+
+    <form [formGroup]="formLogin" class="login-form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input pInputText formControlName="email" type="email" class="form-control" />
+        <p-message severity="error" size="small" variant="simple">
+          @if (isInvalid('email')) { @if (formLogin.get('email')?.errors?.['required']) {
+          <p-message severity="error" size="small" variant="simple">Email is required.</p-message>
+          } @if (formLogin.get('email')?.errors?.['email']) {
+          <p-message severity="error" size="small" variant="simple"
+            >Please enter a valid email.</p-message
+          >
+          }}
+        </p-message>
+      </div>
+
+      <p-floatlabel variant="on" style="--p-floatlabel-on-active-background: #f8f9fa">
+        <p-password
+          formControlName="password"
+          autocomplete="off"
+          [toggleMask]="true"
+          size="large"
+          style="
+            --p-inputtext-background: #f8f9fa;
+            --p-inputtext-color: var(--text-primary);
+            --p-inputtext-border-color: var(--border-color);
+            --p-inputtext-focus-border-color: var(--primary-color);
+            --p-inputtext-hover-border-color: var(--border-color);
+            --p-password-overlay-background: var(--surface-color);
+            --p-password-overlay-color: #334155;
+            --p-password-meter-background: #e2e8f0;
+          "
+          inputId="password"
+        >
+          <ng-template #header>
+            <div class="font-semibold text-xm mb-4">Reset Password</div>
+          </ng-template>
+          <ng-template #footer>
+            <p-divider />
+            <ul class="pl-2 my-0 leading-normal">
+              <li>At least one lowercase</li>
+              <li>At least one uppercase</li>
+              <li>At least one numeric</li>
+              <li>Minimum 8 characters</li>
+            </ul>
+          </ng-template>
+        </p-password>
+        <label for="password">Password</label>
+      </p-floatlabel>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input formControlName="password" type="password" class="form-control" />
+      </div>
+
+      <div class="login-options">
+        <label class="remember-me">
+          <input type="checkbox" name="remember" />
+          Remember me
+        </label>
+        <a href="#" class="forgot-password">Forgot password?</a>
+      </div>
+
+      <span class="error" id="error"></span>
+      <button type="submit" class="btn btn-primary" [disabled]="formLogin.invalid">Login</button>
+
+      <div class="login-footer">No account? <a routerLink="/register.html">Register</a></div>
+    </form>
+  </div>
+</main>

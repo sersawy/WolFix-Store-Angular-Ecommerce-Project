@@ -1,0 +1,165 @@
+.login-container {
+  max-width: 420px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: var(--card-background);
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-color);
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.login-header h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.login-header p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.login-form .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.login-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.login-form .form-control {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: var(--border-radius);
+  background: var(--surface-color);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  transition: all var(--transition-fast);
+}
+
+.login-form .form-control:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(254, 180, 81, 0.25);
+}
+
+.login-form .btn-primary {
+  width: 100%;
+  padding: 0.875rem;
+  background: var(--primary-color);
+  color: var(--secondary-color);
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  margin-top: 0.5rem;
+}
+
+.login-form .btn-primary:hover {
+  background: #e6a245;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.login-footer {
+  text-align: center;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.login-footer a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color var(--transition-fast);
+}
+
+.login-footer a:hover {
+  color: #e6a245;
+  text-decoration: underline;
+}
+
+.login-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+
+/* Root container */
+:host ::ng-deep .p-password {
+  display: block;
+  width: 100%;
+}
+
+/* Input field */
+:host ::ng-deep .p-password-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: var(--border-radius);
+  background: var(--surface-color);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  transition: all var(--transition-fast);
+}
+
+:host ::ng-deep .p-password-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(254, 180, 81, 0.25);
+}
+
+/* Mask/unmask icons */
+:host ::ng-deep .p-password-mask-icon,
+:host ::ng-deep .p-password-unmask-icon,
+:host ::ng-deep .p-password-clear-icon {
+  color: var(--text-secondary);
+  transition: color var(--transition-fast);
+}
+
+:host ::ng-deep .p-password-mask-icon:hover,
+:host ::ng-deep .p-password-unmask-icon:hover,
+:host ::ng-deep .p-password-clear-icon:hover {
+  color: var(--primary-color);
+}
+
+/* Strength meter */
+:host ::ng-deep .p-password-meter {
+  height: 6px;
+  border-radius: var(--border-radius);
+  background: #e2e8f0; /* fallback */
+}
+
+/* Meter states */
+:root {
+  --p-password-strength-weak-background: #f87171; /* red */
+  --p-password-strength-medium-background: #facc15; /* yellow */
+  --p-password-strength-strong-background: #4ade80; /* green */
+}
+
+/* Overlay box (rules list) */
+:host ::ng-deep .p-password-overlay {
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  color: var(--text-primary);
+  padding: 1rem;
+  box-shadow: var(--shadow-lg);
+}

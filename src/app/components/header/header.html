@@ -56,8 +56,34 @@
             <span id="cartCountBadge" class="badge">{{ cartService.getTotalQuantity() }}</span>
           </a>
           <div id="authArea" class="auth-buttons d-flex align-items-center gap-2">
+            @if(islogged){
+            <div class="dropdown">
+              <button class="btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                <i class="bi bi-person-circle"></i> {{ user.name }}
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li>
+                  <a class="dropdown-item" href="account.html"
+                    ><i class="bi bi-gear"></i> Account Settings</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="orders.html"
+                    ><i class="bi bi-clock-history"></i> Order History</a
+                  >
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" (click)="authService.logout()"
+                    ><i class="bi bi-box-arrow-right"></i> Logout</a
+                  >
+                </li>
+              </ul>
+            </div>
+            }@else {
             <app-btn-secondary routerLink="/login" content="Login"></app-btn-secondary>
             <app-btn-primary routerLink="/signup" content="Sign Up"></app-btn-primary>
+            }
           </div>
         </div>
       </div>
