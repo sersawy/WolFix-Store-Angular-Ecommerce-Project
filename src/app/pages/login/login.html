@@ -7,8 +7,10 @@
 
     <form [formGroup]="formLogin" class="login-form" (ngSubmit)="onSubmit()">
       <div class="form-group">
-        <label for="email">Email</label>
-        <input pInputText formControlName="email" type="email" class="form-control" />
+        <p-floatlabel variant="on" style="--p-floatlabel-on-active-background: #f8f9fa">
+          <input pInputText formControlName="email" type="email" class="form-control" />
+          <label for="email">Email</label>
+        </p-floatlabel>
         <p-message severity="error" size="small" variant="simple">
           @if (isInvalid('email')) { @if (formLogin.get('email')?.errors?.['required']) {
           <p-message severity="error" size="small" variant="simple">Email is required.</p-message>
@@ -19,45 +21,45 @@
           }}
         </p-message>
       </div>
-
-      <p-floatlabel variant="on" style="--p-floatlabel-on-active-background: #f8f9fa">
-        <p-password
-          formControlName="password"
-          autocomplete="off"
-          [toggleMask]="true"
-          size="large"
-          style="
-            --p-inputtext-background: #f8f9fa;
-            --p-inputtext-color: var(--text-primary);
-            --p-inputtext-border-color: var(--border-color);
-            --p-inputtext-focus-border-color: var(--primary-color);
-            --p-inputtext-hover-border-color: var(--border-color);
-            --p-password-overlay-background: var(--surface-color);
-            --p-password-overlay-color: #334155;
-            --p-password-meter-background: #e2e8f0;
-          "
-          inputId="password"
-        >
-          <ng-template #header>
-            <div class="font-semibold text-xm mb-4">Reset Password</div>
-          </ng-template>
-          <ng-template #footer>
-            <p-divider />
-            <ul class="pl-2 my-0 leading-normal">
-              <li>At least one lowercase</li>
-              <li>At least one uppercase</li>
-              <li>At least one numeric</li>
-              <li>Minimum 8 characters</li>
-            </ul>
-          </ng-template>
-        </p-password>
-        <label for="password">Password</label>
-      </p-floatlabel>
-
       <div class="form-group">
+        <p-floatlabel variant="on" style="--p-floatlabel-on-active-background: #f8f9fa">
+          <p-password
+            formControlName="password"
+            autocomplete="off"
+            [toggleMask]="true"
+            size="large"
+            style="
+              --p-inputtext-background: #f8f9fa;
+              --p-inputtext-color: var(--text-primary);
+              --p-inputtext-border-color: var(--border-color);
+              --p-inputtext-focus-border-color: var(--primary-color);
+              --p-inputtext-hover-border-color: var(--border-color);
+              --p-password-overlay-background: var(--surface-color);
+              --p-password-overlay-color: #334155;
+              --p-password-meter-background: #e2e8f0;
+            "
+            inputId="password"
+          >
+            <ng-template #header>
+              <div class="font-semibold text-xm mb-4">Reset Password</div>
+            </ng-template>
+            <ng-template #footer>
+              <p-divider />
+              <ul class="pl-2 my-0 leading-normal">
+                <li>At least one lowercase</li>
+                <li>At least one uppercase</li>
+                <li>At least one numeric</li>
+                <li>Minimum 8 characters</li>
+              </ul>
+            </ng-template>
+          </p-password>
+          <label for="password">Password</label>
+        </p-floatlabel>
+      </div>
+      <!-- <div class="form-group">
         <label for="password">Password</label>
         <input formControlName="password" type="password" class="form-control" />
-      </div>
+      </div> -->
 
       <div class="login-options">
         <label class="remember-me">
