@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { API_URLS } from '../constants/api_urls';
-import { IAuthApi, IJwtPayload, ILogin } from '../models/iauth-api';
+import { IAuthApi, IJwtPayload, ILogin, IRegister } from '../models/iauth-api';
 import { jwtDecode } from 'jwt-decode';
 import { Router } from '@angular/router';
 
@@ -24,9 +24,9 @@ export class AuthService {
       })
     );
   }
-  register(email: string, password: string): Observable<IAuthApi> {
+  register(data: IRegister): Observable<IAuthApi> {
     return this.http
-      .post<IAuthApi>(API_URLS.auth.register, { email, password })
+      .post<IAuthApi>(API_URLS.auth.register, data)
       .pipe(tap(() => this.router.navigate(['/'])));
   }
   logout() {
