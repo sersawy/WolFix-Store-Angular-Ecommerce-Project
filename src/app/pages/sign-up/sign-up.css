@@ -154,3 +154,6 @@
   padding: 1rem;
   box-shadow: var(--shadow-lg);
 }
+/* :host ::ng-deep .p-message-content {
+  justify-content: center;
+} */

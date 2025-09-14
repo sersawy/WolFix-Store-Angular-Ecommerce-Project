@@ -5,6 +5,7 @@ import { API_URLS } from '../constants/api_urls';
 import { IAuthApi, IJwtPayload, ILogin, IRegister } from '../models/iauth-api';
 import { jwtDecode } from 'jwt-decode';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +13,7 @@ import { Router } from '@angular/router';
 export class AuthService {
   private http = inject(HttpClient);
   private router = inject(Router);
+  toastr = inject(ToastrService);
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
   islogged$ = this.isLoggedInSubject.asObservable();
   private tokenKey = 'token';
@@ -20,18 +22,16 @@ export class AuthService {
       tap((res) => {
         res.data ? localStorage.setItem(this.tokenKey, res.data.token) : '';
         this.isLoggedInSubject.next(true);
-        this.router.navigate(['/']);
-      })
+      }),
     );
   }
   register(data: IRegister): Observable<IAuthApi> {
-    return this.http
-      .post<IAuthApi>(API_URLS.auth.register, data)
-      .pipe(tap(() => this.router.navigate(['/'])));
+    return this.http.post<IAuthApi>(API_URLS.auth.register, data);
   }
   logout() {
     localStorage.removeItem(this.tokenKey);
     this.isLoggedInSubject.next(false);
+    this.toastr.info('You have been logged out 👋', 'Logout');
     this.router.navigate(['/login']);
   }
   checkToken() {
