@@ -144,14 +144,14 @@
 :host ::ng-deep .p-password-meter {
   height: 6px;
   border-radius: var(--border-radius);
-  background: #e2e8f0; /* fallback */
+  background: #e2e8f0;
 }
 
 /* Meter states */
 :root {
-  --p-password-strength-weak-background: #f87171; /* red */
-  --p-password-strength-medium-background: #facc15; /* yellow */
-  --p-password-strength-strong-background: #4ade80; /* green */
+  --p-password-strength-weak-background: #f87171;
+  --p-password-strength-medium-background: #facc15;
+  --p-password-strength-strong-background: #4ade80;
 }
 
 /* Overlay box (rules list) */

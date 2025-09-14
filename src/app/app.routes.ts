@@ -1,3 +1,4 @@
+import { Checkout } from './pages/checkout/checkout';
 import { Category } from './pages/category/category';
 import { ProductDetail } from './pages/product-detail/product-detail';
 import { Routes } from '@angular/router';
@@ -15,6 +16,7 @@ export const routes: Routes = [
   { path: 'product/:id', component: ProductDetail },
   { path: 'category/:category', component: Category },
   { path: 'cart', component: Cart },
+  { path: 'checkout', component: Checkout },
   { path: 'login', component: Login, canActivate: [guestGuard] },
   { path: 'signup', component: SignUp, canActivate: [guestGuard] },
 ];

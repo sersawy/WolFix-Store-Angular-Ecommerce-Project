@@ -1,1 +1,171 @@
-<p>checkout works!</p>
+<main class="container checkout-container">
+  <div class="checkout-header">
+    <h1 class="checkout-title">Checkout</h1>
+    <p class="checkout-subtitle">Complete your purchase</p>
+  </div>
+
+  <div class="checkout-grid">
+    <div class="checkout-forms">
+      <div class="checkout-card">
+        <h2 class="section-title">
+          <i class="bi bi-truck"></i>
+          Shipping Information
+        </h2>
+
+        <form id="shippingForm">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="firstName" class="form-label">First Name</label>
+              <input type="text" class="form-control" id="firstName" required />
+            </div>
+
+            <div class="form-group">
+              <label for="lastName" class="form-label">Last Name</label>
+              <input type="text" class="form-control" id="lastName" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email" class="form-label">Email Address</label>
+            <input type="email" class="form-control" id="email" required />
+          </div>
+
+          <div class="form-group">
+            <label for="address" class="form-label">Street Address</label>
+            <input type="text" class="form-control" id="address" required />
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="city" class="form-label">City</label>
+              <input type="text" class="form-control" id="city" required />
+            </div>
+
+            <div class="form-group">
+              <label for="state" class="form-label">State</label>
+              <select class="form-select" id="state" required>
+                <option value="CA" selected>Cairo</option>
+                <option value="AL">Alex</option>
+                <option value="AS">Aswan</option>
+                <option value="ME">Menofia</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="zipCode" class="form-label">ZIP Code</label>
+              <input type="text" class="form-control" id="zipCode" required />
+            </div>
+
+            <div class="form-group">
+              <label for="phone" class="form-label">Phone Number</label>
+              <input type="tel" class="form-control" id="phone" required />
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="checkout-card">
+        <h2 class="section-title">
+          <i class="bi bi-credit-card"></i>
+          Payment Method
+        </h2>
+
+        <div class="payment-methods">
+          <div class="payment-method selected" data-method="credit-card">
+            <i class="bi bi-credit-card-2-front"></i>
+            <div class="payment-method-name">Credit Card</div>
+          </div>
+
+          <div class="payment-method" data-method="paypal">
+            <i class="bi bi-paypal"></i>
+            <div class="payment-method-name">PayPal</div>
+          </div>
+
+          <div class="payment-method" data-method="apple-pay">
+            <i class="bi bi-apple"></i>
+            <div class="payment-method-name">Apple Pay</div>
+          </div>
+        </div>
+
+        <div id="creditCardForm">
+          <div class="form-group">
+            <label for="cardNumber" class="form-label">Card Number</label>
+            <input
+              type="text"
+              class="form-control"
+              id="cardNumber"
+              placeholder="1234 5678 9012 3456"
+              required
+            />
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="expiryDate" class="form-label">Expiry Date</label>
+              <input
+                type="text"
+                class="form-control"
+                id="expiryDate"
+                placeholder="MM/YY"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="cvv" class="form-label">CVV</label>
+              <input type="text" class="form-control" id="cvv" placeholder="123" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="cardName" class="form-label">Name on Card</label>
+            <input type="text" class="form-control" id="cardName" required />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="checkout-summary">
+      <div class="checkout-card">
+        <h2 class="section-title">
+          <i class="bi bi-bag"></i>
+          Order Summary
+        </h2>
+
+        <div class="checkout-items"></div>
+
+        <div class="summary-section">
+          <div class="summary-row">
+            <span class="summary-label">Subtotal</span>
+            <span class="summary-value order-total"></span>
+          </div>
+
+          <div class="summary-row">
+            <span class="summary-label">Shipping</span>
+            <span class="summary-value">$0.00</span>
+          </div>
+
+          <div class="summary-row">
+            <span class="summary-label">Tax</span>
+            <span class="summary-value">$0.00</span>
+          </div>
+
+          <div class="summary-total">
+            <span class="summary-label">Total</span>
+            <span class="summary-value order-total"></span>
+          </div>
+        </div>
+
+        <button id="placeOrderBtn" class="btn-checkout-primary">
+          <i class="bi bi-lock-fill"></i> Place Order
+        </button>
+
+        <div class="secure-notice">
+          <i class="bi bi-shield-check"></i> Your payment information is secure and encrypted
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
