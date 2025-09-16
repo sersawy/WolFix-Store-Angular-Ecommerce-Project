@@ -1,0 +1,22 @@
+<!-- Spinner -->
+@if (isLoading) {
+  <div class="loading-overlay">
+    <div style="color: #feb451" class="la-ball-scale-multiple la-3x">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+}
+
+<!-- Image -->
+<img
+  [src]="image"
+  [ngStyle]="{
+    visibility: isLoading ? 'hidden' : '',
+    height: '100%',
+    width: '100%',
+  }"
+  (load)="hideLoader()"
+  (error)="hideLoader()"
+/>

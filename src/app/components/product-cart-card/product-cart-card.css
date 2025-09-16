@@ -96,3 +96,7 @@ td {
   border-bottom: 1px solid var(--border-color);
   vertical-align: middle;
 }
+.image-container {
+  position: relative;
+  display: inline-block;
+}

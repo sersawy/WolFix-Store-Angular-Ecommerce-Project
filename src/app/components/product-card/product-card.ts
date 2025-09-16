@@ -5,10 +5,11 @@ import { BtnSecondary } from '../buttons/btn-secondary/btn-secondary';
 import { Rating } from '../rating/rating';
 import { ProductPrice } from '../product-price/product-price';
 import { CartService } from '../../services/cart-service';
+import { ImageWithLoading } from '../image-with-loading/image-with-loading';
 
 @Component({
   selector: 'app-product-card',
-  imports: [BtnPrimary, BtnSecondary, Rating, ProductPrice],
+  imports: [BtnPrimary, BtnSecondary, Rating, ProductPrice, ImageWithLoading],
   templateUrl: './product-card.html',
   styleUrl: './product-card.css',
 })

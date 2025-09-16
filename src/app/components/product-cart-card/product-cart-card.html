@@ -1,11 +1,14 @@
 <tr>
   <td>
     <div class="d-flex align-items-center">
-      <img
+      <!-- <img
         src="{{ item.product.image }}"
         alt="{{ item.product.name }}"
         class="cart-item-image me-3"
-      />
+      /> -->
+      <div class="image-container cart-item-image me-3">
+        <app-image-with-loading [image]="item.product.image"> </app-image-with-loading>
+      </div>
       <div>
         <div class="cart-item-name">{{ item.product.name }}</div>
         <div class="cart-item-category">{{ item.product.category }} • {{ item.product.brand }}</div>

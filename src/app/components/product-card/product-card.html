@@ -1,10 +1,11 @@
 <div class="product-card card h-100">
   <div class="product-image">
-    <img [src]="product.image" class="card-img-top" [alt]="product.name" />
-    @if(product.sale){
-    <span class="product-badge">Sale</span>
-    }@else{
-    <span class="product-badge" style="background: var(--success-color)">New</span>
+    <app-image-with-loading [image]="product.image"> </app-image-with-loading>
+    <!-- <img [src]="product.image" class="card-img-top" [alt]="product.name" /> -->
+    @if (product.sale) {
+      <span class="product-badge">Sale</span>
+    } @else {
+      <span class="product-badge" style="background: var(--success-color)">New</span>
     }
   </div>
   <div class="card-body d-flex flex-column">
@@ -17,14 +18,14 @@
       <app-rating [rating]="product.rating"></app-rating>
     </div>
     <app-product-price [product]="product"></app-product-price>
-    @if(action){
-    <div class="product-actions d-flex justify-content-between">
-      <app-btn-secondary
-        routerLink="/product/{{ product.id }}"
-        content="Details"
-      ></app-btn-secondary>
-      <app-btn-primary (click)="addToCart()" content="Add to Cart"></app-btn-primary>
-    </div>
+    @if (action) {
+      <div class="product-actions d-flex justify-content-between">
+        <app-btn-secondary
+          routerLink="/product/{{ product.id }}"
+          content="Details"
+        ></app-btn-secondary>
+        <app-btn-primary (click)="addToCart()" content="Add to Cart"></app-btn-primary>
+      </div>
     }
   </div>
 </div>

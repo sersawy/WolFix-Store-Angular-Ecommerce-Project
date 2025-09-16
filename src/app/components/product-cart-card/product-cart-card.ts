@@ -3,10 +3,11 @@ import { ICart } from '../../models/iproducts-api';
 import { CurrencyPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CartService } from '../../services/cart-service';
+import { ImageWithLoading } from '../image-with-loading/image-with-loading';
 
 @Component({
   selector: 'app-product-cart-card',
-  imports: [CurrencyPipe, FormsModule],
+  imports: [CurrencyPipe, FormsModule, ImageWithLoading],
   templateUrl: './product-cart-card.html',
   styleUrl: './product-cart-card.css',
   host: {
