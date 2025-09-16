@@ -74,7 +74,7 @@ export class ProductDetail implements OnInit {
   }
   decreaseQty() {
     this.quantity -= 1;
-    this.quantity = this.quantity <= 0 ? 0 : this.quantity;
+    this.quantity = this.quantity <= 0 ? 1 : this.quantity;
   }
   addToCart() {
     this.cartService.add(this.product, this.quantity);

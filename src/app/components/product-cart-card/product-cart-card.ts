@@ -26,6 +26,7 @@ export class ProductCartCard {
     this.updateQty();
   }
   decreaseQty() {
+    if (this.item.qty === 1) return this.removeItem();
     this.item.qty--;
     this.updateQty();
   }
