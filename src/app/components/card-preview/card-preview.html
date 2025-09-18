@@ -1,0 +1,23 @@
+<div class="card-container" [class.flipped]="flip">
+  <!-- Front -->
+  <div class="card front">
+    <div class="chip"></div>
+    <div class="number">{{ cardNumber }}</div>
+    <div class="info">
+      <span class="label">Card Holder</span>
+      <span class="value">{{ cardName }}</span>
+    </div>
+    <div class="info">
+      <span class="label">Expires</span>
+      <span class="value">{{ expiryDate }}</span>
+    </div>
+  </div>
+
+  <!-- Back -->
+  <div class="card back">
+    <div class="stripe"></div>
+    <div class="cvv-box">
+      <span>{{ cvv }}</span>
+    </div>
+  </div>
+</div>

@@ -5,166 +5,375 @@
   </div>
 
   <div class="checkout-grid">
+    <!-- Left Side (Forms) -->
     <div class="checkout-forms">
+      <!-- Shipping Information -->
       <div class="checkout-card">
-        <h2 class="section-title">
-          <i class="bi bi-truck"></i>
+        <h2 class="section-title mb-4">
+          <i class="pi pi-truck"></i>
           Shipping Information
         </h2>
 
-        <form id="shippingForm">
+        <form [formGroup]="shippingForm">
           <div class="form-grid">
             <div class="form-group">
-              <label for="firstName" class="form-label">First Name</label>
-              <input type="text" class="form-control" id="firstName" required />
+              <p-floatlabel variant="on" style="--p-floatlabel-on-active-background: #f8f9fa">
+                <input
+                  id="firstName"
+                  pInputText
+                  formControlName="firstName"
+                  type="text"
+                  class="form-control"
+                />
+                <label for="firstName">First Name</label>
+              </p-floatlabel>
+              <p-message severity="error" size="small" variant="simple">
+                @if (isInvalid('firstName')) {
+                  @if (shippingForm.get('firstName')?.errors?.['required']) {
+                    <p-message severity="error" size="small" variant="simple"
+                      >Name is required.</p-message
+                    >
+                  }
+                  @if (shippingForm.get('firstName')?.errors?.['pattern']) {
+                    <p-message severity="error" size="small" variant="simple"
+                      >Please enter a valid name.</p-message
+                    >
+                  }
+                }
+              </p-message>
             </div>
 
             <div class="form-group">
-              <label for="lastName" class="form-label">Last Name</label>
-              <input type="text" class="form-control" id="lastName" required />
+              <p-floatlabel variant="on" style="--p-floatlabel-on-active-background: #f8f9fa">
+                <input
+                  id="lastName"
+                  pInputText
+                  formControlName="lastName"
+                  type="text"
+                  class="form-control"
+                />
+                <label for="lastName">Last Name</label>
+              </p-floatlabel>
+              <p-message severity="error" size="small" variant="simple">
+                @if (isInvalid('lastName')) {
+                  @if (shippingForm.get('lastName')?.errors?.['required']) {
+                    <p-message severity="error" size="small" variant="simple"
+                      >Name is required.</p-message
+                    >
+                  }
+                  @if (shippingForm.get('lastName')?.errors?.['pattern']) {
+                    <p-message severity="error" size="small" variant="simple"
+                      >Please enter a valid name.</p-message
+                    >
+                  }
+                }
+              </p-message>
             </div>
           </div>
 
           <div class="form-group">
-            <label for="email" class="form-label">Email Address</label>
-            <input type="email" class="form-control" id="email" required />
+            <p-floatlabel variant="on" style="--p-floatlabel-on-active-background: #f8f9fa">
+              <input
+                id="email"
+                pInputText
+                type="email"
+                formControlName="email"
+                class="form-control"
+              />
+              <label for="email">Email Address</label>
+            </p-floatlabel>
+            <p-message severity="error" size="small" variant="simple">
+              @if (isInvalid('email')) {
+                @if (shippingForm.get('email')?.errors?.['required']) {
+                  <p-message severity="error" size="small" variant="simple"
+                    >Email is required.</p-message
+                  >
+                }
+                @if (
+                  shippingForm.get('email')?.errors?.['email'] ||
+                  shippingForm.get('email')?.errors?.['pattern']
+                ) {
+                  <p-message severity="error" size="small" variant="simple"
+                    >Please enter a valid email.</p-message
+                  >
+                }
+              }
+            </p-message>
           </div>
 
           <div class="form-group">
-            <label for="address" class="form-label">Street Address</label>
-            <input type="text" class="form-control" id="address" required />
+            <p-floatlabel variant="on" style="--p-floatlabel-on-active-background: #f8f9fa">
+              <input
+                id="address"
+                pInputText
+                formControlName="address"
+                type="text"
+                class="form-control"
+              />
+              <label for="address">Street Address</label>
+            </p-floatlabel>
+            <p-message severity="error" size="small" variant="simple">
+              @if (isInvalid('address')) {
+                @if (shippingForm.get('address')?.errors?.['required']) {
+                  <p-message severity="error" size="small" variant="simple"
+                    >Address is required.</p-message
+                  >
+                }
+              }
+            </p-message>
           </div>
 
           <div class="form-grid">
             <div class="form-group">
-              <label for="city" class="form-label">City</label>
-              <input type="text" class="form-control" id="city" required />
+              <p-floatlabel variant="on" style="--p-floatlabel-on-active-background: #f8f9fa">
+                <input
+                  id="city"
+                  pInputText
+                  formControlName="city"
+                  type="text"
+                  class="form-control"
+                />
+                <label for="city">City</label>
+              </p-floatlabel>
+              <p-message severity="error" size="small" variant="simple">
+                @if (isInvalid('city')) {
+                  @if (shippingForm.get('city')?.errors?.['required']) {
+                    <p-message severity="error" size="small" variant="simple"
+                      >City is required.</p-message
+                    >
+                  }
+                }
+              </p-message>
             </div>
 
             <div class="form-group">
-              <label for="state" class="form-label">State</label>
-              <select class="form-select" id="state" required>
-                <option value="CA" selected>Cairo</option>
-                <option value="AL">Alex</option>
-                <option value="AS">Aswan</option>
-                <option value="ME">Menofia</option>
-              </select>
+              <p-select
+                id="state"
+                [options]="states"
+                formControlName="state"
+                optionLabel="name"
+                placeholder="Select State"
+                class="form-control"
+              ></p-select>
             </div>
           </div>
 
           <div class="form-grid">
             <div class="form-group">
-              <label for="zipCode" class="form-label">ZIP Code</label>
-              <input type="text" class="form-control" id="zipCode" required />
+              <p-floatlabel variant="on" style="--p-floatlabel-on-active-background: #f8f9fa">
+                <input
+                  id="zipCode"
+                  pInputText
+                  formControlName="zipCode"
+                  type="text"
+                  class="form-control"
+                />
+                <label for="zipCode">ZIP Code</label>
+              </p-floatlabel>
+              <p-message severity="error" size="small" variant="simple">
+                @if (isInvalid('zipCode')) {
+                  @if (shippingForm.get('zipCode')?.errors?.['required']) {
+                    <p-message severity="error" size="small" variant="simple"
+                      >ZIP Code is required.</p-message
+                    >
+                  }
+                }
+              </p-message>
             </div>
 
             <div class="form-group">
-              <label for="phone" class="form-label">Phone Number</label>
-              <input type="tel" class="form-control" id="phone" required />
+              <p-floatlabel variant="on" style="--p-floatlabel-on-active-background: #f8f9fa">
+                <input
+                  id="phone"
+                  pInputText
+                  formControlName="phone"
+                  type="tel"
+                  class="form-control"
+                />
+                <label for="phone">Phone Number</label>
+              </p-floatlabel>
+              <p-message severity="error" size="small" variant="simple">
+                @if (isInvalid('phone')) {
+                  @if (shippingForm.get('phone')?.errors?.['required']) {
+                    <p-message severity="error" size="small" variant="simple"
+                      >Phone is required.</p-message
+                    >
+                  }
+                }
+              </p-message>
             </div>
           </div>
         </form>
       </div>
 
-      <div class="checkout-card">
+      <!-- Payment Method -->
+      <div class="checkout-card" [formGroup]="shippingForm">
         <h2 class="section-title">
-          <i class="bi bi-credit-card"></i>
-          Payment Method
+          <i class="pi pi-credit-card"></i>
+          Payment gateway
         </h2>
 
-        <div class="payment-methods">
-          <div class="payment-method selected" data-method="credit-card">
-            <i class="bi bi-credit-card-2-front"></i>
-            <div class="payment-method-name">Credit Card</div>
+        <div>
+          <div class="my-5 d-flex justify-content-center align-items-center">
+            <app-card-preview
+              [form]="shippingForm"
+              #cardPreview
+              (mouseenter)="cardPreview.toggleFlip(false)"
+              (mouseleave)="cardPreview.toggleFlip(false)"
+              (focusin)="cardPreview.toggleFlip(false)"
+              (focusout)="cardPreview.toggleFlip(false)"
+            ></app-card-preview>
           </div>
-
-          <div class="payment-method" data-method="paypal">
-            <i class="bi bi-paypal"></i>
-            <div class="payment-method-name">PayPal</div>
-          </div>
-
-          <div class="payment-method" data-method="apple-pay">
-            <i class="bi bi-apple"></i>
-            <div class="payment-method-name">Apple Pay</div>
-          </div>
-        </div>
-
-        <div id="creditCardForm">
+          <!-- Card Number -->
           <div class="form-group">
-            <label for="cardNumber" class="form-label">Card Number</label>
-            <input
-              type="text"
-              class="form-control"
-              id="cardNumber"
-              placeholder="1234 5678 9012 3456"
-              required
-            />
+            <p-floatlabel variant="on" style="--p-floatlabel-on-active-background: #f8f9fa">
+              <input
+                id="cardNumber"
+                pInputText
+                formControlName="cardNumber"
+                type="text"
+                mask="0000 0000 0000 0000"
+                class="form-control"
+              />
+              <label for="cardNumber">Card Number</label>
+            </p-floatlabel>
+            <p-message severity="error" size="small" variant="simple">
+              @if (isInvalid('cardNumber')) {
+                <p-message severity="error" size="small" variant="simple"
+                  >Invalid card number</p-message
+                >
+              }
+            </p-message>
           </div>
 
+          <!-- Expiry Date (Month + Year) -->
           <div class="form-grid">
             <div class="form-group">
-              <label for="expiryDate" class="form-label">Expiry Date</label>
-              <input
-                type="text"
-                class="form-control"
-                id="expiryDate"
-                placeholder="MM/YY"
-                required
-              />
+              <p-floatlabel variant="on" style="--p-floatlabel-on-active-background: #f8f9fa">
+                <input
+                  id="expiryMonth"
+                  pInputText
+                  formControlName="expiryMonth"
+                  type="number"
+                  class="form-control"
+                  min="1"
+                  max="12"
+                />
+                <label for="expiryMonth">MM</label>
+              </p-floatlabel>
+              <p-message severity="error" size="small" variant="simple">
+                @if (isInvalid('expiryMonth')) {
+                  <p-message severity="error" size="small" variant="simple"
+                    >Invalid month</p-message
+                  >
+                }
+              </p-message>
             </div>
 
             <div class="form-group">
-              <label for="cvv" class="form-label">CVV</label>
-              <input type="text" class="form-control" id="cvv" placeholder="123" required />
+              <p-floatlabel variant="on" style="--p-floatlabel-on-active-background: #f8f9fa">
+                <input
+                  id="expiryYear"
+                  pInputText
+                  formControlName="expiryYear"
+                  type="number"
+                  class="form-control"
+                  min="24"
+                  max="99"
+                />
+                <label for="expiryYear">YY</label>
+              </p-floatlabel>
+              <p-message severity="error" size="small" variant="simple">
+                @if (isInvalid('expiryYear')) {
+                  <p-message severity="error" size="small" variant="simple">Invalid year</p-message>
+                }
+              </p-message>
             </div>
           </div>
 
+          <!-- CVV -->
           <div class="form-group">
-            <label for="cardName" class="form-label">Name on Card</label>
-            <input type="text" class="form-control" id="cardName" required />
+            <p-floatlabel variant="on" style="--p-floatlabel-on-active-background: #f8f9fa">
+              <input
+                id="cvv"
+                pInputText
+                formControlName="cvv"
+                type="text"
+                mask="0000"
+                class="form-control"
+                (focus)="cardPreview.toggleFlip(true)"
+                (blur)="cardPreview.toggleFlip(false)"
+              />
+              <label for="cvv">CVV</label>
+            </p-floatlabel>
+            <p-message severity="error" size="small" variant="simple">
+              @if (isInvalid('cvv')) {
+                <p-message severity="error" size="small" variant="simple">Invalid CVV</p-message>
+              }
+            </p-message>
+          </div>
+
+          <!-- Cardholder Name -->
+          <div class="form-group">
+            <p-floatlabel variant="on" style="--p-floatlabel-on-active-background: #f8f9fa">
+              <input
+                id="cardName"
+                pInputText
+                formControlName="cardName"
+                type="text"
+                class="form-control"
+              />
+              <label for="cardName">Name on Card</label>
+            </p-floatlabel>
+            <p-message severity="error" size="small" variant="simple">
+              @if (isInvalid('cardName')) {
+                <p-message severity="error" size="small" variant="simple"
+                  >Name is required
+                </p-message>
+              }
+            </p-message>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- Right Side (Summary) -->
     <div class="checkout-summary">
       <div class="checkout-card">
         <h2 class="section-title">
-          <i class="bi bi-bag"></i>
+          <i class="pi pi-shopping-bag"></i>
           Order Summary
         </h2>
 
-        <div class="checkout-items"></div>
+        <div class="checkout-items">
+          <!-- Example Item -->
+          <div class="checkout-item">
+            <img src="./assets/product.png" class="checkout-item-image" />
+            <div class="checkout-item-details">
+              <div class="checkout-item-name">Product Name</div>
+              <div class="checkout-item-category">Category</div>
+              <div class="checkout-item-price">$199.00</div>
+            </div>
+            <div class="checkout-item-quantity">Qty: 1</div>
+          </div>
+        </div>
 
         <div class="summary-section">
           <div class="summary-row">
             <span class="summary-label">Subtotal</span>
-            <span class="summary-value order-total"></span>
+            <span class="summary-value">$199.00</span>
           </div>
-
           <div class="summary-row">
             <span class="summary-label">Shipping</span>
             <span class="summary-value">$0.00</span>
           </div>
-
-          <div class="summary-row">
-            <span class="summary-label">Tax</span>
-            <span class="summary-value">$0.00</span>
-          </div>
-
           <div class="summary-total">
             <span class="summary-label">Total</span>
-            <span class="summary-value order-total"></span>
+            <span class="summary-value">$199.00</span>
           </div>
         </div>
 
-        <button id="placeOrderBtn" class="btn-checkout-primary">
-          <i class="bi bi-lock-fill"></i> Place Order
-        </button>
-
-        <div class="secure-notice">
-          <i class="bi bi-shield-check"></i> Your payment information is secure and encrypted
-        </div>
+        <button class="btn-checkout-primary"><i class="pi pi-lock"></i> Place Order</button>
       </div>
     </div>
   </div>
