@@ -13,4 +13,9 @@ export const API_URLS = {
     register: `${environment.baseUrl}/auth/?action=register`,
     verify: `${environment.baseUrl}/auth/?action=verify`,
   },
+  orders: {
+    create: `${environment.baseUrl}/orders/`,
+    getALL: `${environment.baseUrl}/orders/`,
+    getById: `${environment.baseUrl}/orders/`,
+  },
 };

@@ -9,8 +9,8 @@
     <div class="checkout-forms">
       <!-- Shipping Information -->
       <div class="checkout-card">
-        <h2 class="section-title mb-4">
-          <i class="pi pi-truck"></i>
+        <h2 class="section-title">
+          <i class="bi bi-truck"></i>
           Shipping Information
         </h2>
 
@@ -209,10 +209,9 @@
       <!-- Payment Method -->
       <div class="checkout-card" [formGroup]="shippingForm">
         <h2 class="section-title">
-          <i class="pi pi-credit-card"></i>
-          Payment gateway
+          <i class="bi bi-credit-card"></i>
+          Payment Gateway
         </h2>
-
         <div>
           <div class="my-5 d-flex justify-content-center align-items-center">
             <app-card-preview
@@ -341,39 +340,35 @@
     <div class="checkout-summary">
       <div class="checkout-card">
         <h2 class="section-title">
-          <i class="pi pi-shopping-bag"></i>
+          <i class="bi bi-bag"></i>
           Order Summary
         </h2>
 
         <div class="checkout-items">
           <!-- Example Item -->
-          <div class="checkout-item">
-            <img src="./assets/product.png" class="checkout-item-image" />
-            <div class="checkout-item-details">
-              <div class="checkout-item-name">Product Name</div>
-              <div class="checkout-item-category">Category</div>
-              <div class="checkout-item-price">$199.00</div>
-            </div>
-            <div class="checkout-item-quantity">Qty: 1</div>
-          </div>
+          @for (item of cartService.get(); track $index) {
+            <app-checkout-item [item]="item"></app-checkout-item>
+          }
         </div>
 
         <div class="summary-section">
           <div class="summary-row">
             <span class="summary-label">Subtotal</span>
-            <span class="summary-value">$199.00</span>
+            <span class="summary-value">{{ cartService.total() | currency }}</span>
           </div>
           <div class="summary-row">
             <span class="summary-label">Shipping</span>
-            <span class="summary-value">$0.00</span>
+            <span class="summary-value">{{ 0 | currency }}</span>
           </div>
           <div class="summary-total">
             <span class="summary-label">Total</span>
-            <span class="summary-value">$199.00</span>
+            <span class="summary-value">{{ cartService.total() | currency }}</span>
           </div>
         </div>
 
-        <button class="btn-checkout-primary"><i class="pi pi-lock"></i> Place Order</button>
+        <button class="btn-checkout-primary" (click)="onSubmit()" [disabled]="shippingForm.invalid">
+          <i class="pi pi-lock"></i> Place Order
+        </button>
       </div>
     </div>
   </div>

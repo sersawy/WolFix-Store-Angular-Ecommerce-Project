@@ -1,1 +1,37 @@
-<p>orders works!</p>
+<main class="container my-4">
+  <div class="orders-container">
+    <div class="orders-header">
+      <h2><i class="bi bi-bag-check"></i> My Orders</h2>
+      <div class="orders-filters">
+        <button class="filter-btn active" data-filter="all">All Orders</button>
+        <button class="filter-btn" data-filter="processing">Processing</button>
+        <button class="filter-btn" data-filter="shipped">Shipped</button>
+        <button class="filter-btn" data-filter="delivered">Delivered</button>
+      </div>
+    </div>
+
+    <div class="orders-grid">
+      @for (item of items; track $index) {
+      } @empty {
+        <div class="orders-empty">
+          <div class="orders-empty-icon">
+            <i class="bi bi-bag-x"></i>
+          </div>
+          <h2 class="orders-empty-title">No orders yet</h2>
+          <p class="orders-empty-message">
+            You haven't placed any orders yet. Start shopping to discover our products and make your
+            first purchase!
+          </p>
+          <div class="orders-empty-actions">
+            <a href="index.html" class="btn-shopping">
+              <i class="bi bi-arrow-left"></i> Continue Shopping
+            </a>
+            <a href="index.html#products" class="btn-browse">
+              <i class="bi bi-grid"></i> Browse Products
+            </a>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</main>

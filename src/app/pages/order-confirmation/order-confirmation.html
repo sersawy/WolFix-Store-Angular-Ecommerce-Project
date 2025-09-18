@@ -1,1 +1,103 @@
-<p>order-confirmation works!</p>
+<main class="container confirmation-container">
+  <div class="confirmation-card">
+    <div class="confirmation-header">
+      <div class="confirmation-icon">
+        <i class="bi bi-check-circle-fill"></i>
+      </div>
+      <h1 class="confirmation-title">Order Confirmed!</h1>
+      <p class="confirmation-subtitle">Thank you for your purchase</p>
+    </div>
+
+    <div class="confirmation-body">
+      <div class="order-info">
+        <div class="info-card">
+          <h3><i class="bi bi-info-circle"></i> Order Information</h3>
+          <p>
+            <strong>Order ID:</strong>
+            <span> #{{ order.data.orderId }}</span>
+          </p>
+          <p>
+            <strong>Order Date:</strong>
+            <span class="order-date"> {{ order.data.created_at | date: 'MMMM d, y' }}</span>
+          </p>
+          <p>
+            <strong>Order Status: </strong>
+            <span class="status-badge status-{{ order.data.status }}"
+              ><i class="bi bi-arrow-repeat"></i>
+              <span class="order-status"> {{ order.data.status }}</span>
+            </span>
+          </p>
+          <p>
+            <strong>Order Total:</strong>
+            <span class="order-total"> {{ order.data.total | currency }}</span>
+          </p>
+        </div>
+
+        <div class="info-card">
+          <h3><i class="bi bi-truck"></i> Shipping Information</h3>
+          <p>Standard Shipping</p>
+          <p><strong>Estimated Delivery:</strong> 3-5 business days</p>
+          <p>
+            You will receive a confirmation email with tracking information once your order ships.
+          </p>
+        </div>
+
+        <div class="info-card">
+          <h3><i class="bi bi-credit-card"></i> Payment Information</h3>
+          <p><strong>Payment Method:</strong> Credit Card</p>
+          <p><strong>Payment Status:</strong> Completed</p>
+          <p>
+            <strong>Total Charged:</strong> <span class="order-total"></span>
+            {{ order.data.total | currency }}
+          </p>
+        </div>
+      </div>
+
+      <div class="order-items">
+        <h2>
+          Order Items (<span class="order-items-count">{{ order.data.items.length }}</span
+          >)
+        </h2>
+        <div class="order-items-container">
+          @for (item of items; track $index) {
+            <app-checkout-item [item]="item"></app-checkout-item>
+          }
+        </div>
+      </div>
+
+      <div class="order-summary">
+        <h3>Order Summary</h3>
+        <div class="summary-row">
+          <span
+            >Subtotal (<span class="order-items-count">{{ order.data.items.length }}</span>
+            items)</span
+          >
+          <span class="order-total">{{ order.data.total | currency }}</span>
+        </div>
+        <div class="summary-row">
+          <span>Shipping</span>
+          <span>$0.00</span>
+        </div>
+        <div class="summary-row">
+          <span>Tax</span>
+          <span>$0.00</span>
+        </div>
+        <div class="summary-total">
+          <span>Total</span>
+          <span class="order-total">{{ order.data.total | currency }}</span>
+        </div>
+      </div>
+
+      <div class="confirmation-actions">
+        <app-btn-primary
+          routerLink="/"
+          content='<i class="bi bi-house"></i> Continue Shopping'
+        ></app-btn-primary>
+        <app-btn-secondary
+          routerLink="/orders"
+          content='<i class="bi bi-list-check"></i> View Order History'
+        ></app-btn-secondary>
+      </div>
+    </div>
+  </div>
+</main>

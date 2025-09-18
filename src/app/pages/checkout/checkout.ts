@@ -1,3 +1,4 @@
+import { OrderService } from './../../services/order-service';
 import { Component, inject, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -23,6 +24,9 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { CommonModule } from '@angular/common';
 import { CardPreview } from '../../components/card-preview/card-preview';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
+import { CartService } from '../../services/cart-service';
+import { CheckoutItem } from '../../components/checkout-item/checkout-item';
+import { IOrder } from '../../models/iorder';
 
 @Component({
   selector: 'app-checkout',
@@ -40,6 +44,7 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
     CardPreview,
     NgxMaskDirective,
     NgxMaskPipe,
+    CheckoutItem,
   ],
   templateUrl: './checkout.html',
   styleUrl: './checkout.css',
@@ -47,6 +52,13 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 })
 export class Checkout implements OnInit {
   shippingForm!: FormGroup;
+  cartService = inject(CartService);
+  orderService = inject(OrderService);
+  spinner = inject(NgxSpinnerService);
+  toastr = inject(ToastrService);
+  router = inject(Router);
+  errorMessage: string = '';
+
   fb = inject(FormBuilder);
   ngOnInit(): void {
     this.shippingForm = this.fb.group({
@@ -88,5 +100,43 @@ export class Checkout implements OnInit {
       this.shippingForm.get(control)?.invalid &&
       (this.shippingForm.get(control)?.dirty || this.shippingForm.get(control)?.touched)
     );
+  }
+  onSubmit() {
+    this.spinner.show();
+
+    const order: IOrder = {
+      ...this.shippingForm.value,
+      items: this.cartService.get().map((it) => {
+        return {
+          productId: it.product.id,
+          qty: it.qty,
+        };
+      }),
+    };
+    this.orderService.createOrder(order).subscribe({
+      next: (res: any) => {
+        if (res.success) {
+          this.errorMessage = '';
+
+          this.toastr.success(res.message, 'Order Created');
+
+          console.log('Order Data:', res.data);
+          this.orderService.setOrderData(res);
+
+          this.router.navigate(['/order-confirmation']);
+        } else {
+          this.errorMessage = res.message;
+        }
+
+        this.spinner.hide();
+      },
+      error: (err) => {
+        this.errorMessage = err.error?.message || 'Something went wrong';
+        this.spinner.hide();
+      },
+      complete: () => {
+        this.spinner.hide();
+      },
+    });
   }
 }

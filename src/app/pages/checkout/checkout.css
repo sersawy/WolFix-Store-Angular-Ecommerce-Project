@@ -125,6 +125,36 @@
   transform: translateY(-2px);
   box-shadow: var(--shadow);
 }
+.btn-checkout-primary:disabled {
+  background: var(--text-muted);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.summary-label {
+  color: var(--text-secondary);
+}
+
+.summary-value {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.summary-total {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 2px solid var(--border-color);
+  font-size: 1.2rem;
+  font-weight: 700;
+}
 
 @media (max-width: 991px) {
   .checkout-grid {
@@ -169,4 +199,11 @@
 :host ::ng-deep .p-select-option.p-highlight {
   background: var(--primary-color);
   color: #fff;
+}
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--border-color);
 }
