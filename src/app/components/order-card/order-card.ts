@@ -8,7 +8,7 @@ import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-order-card',
-  imports: [DatePipe, OrderItem, CurrencyPipe, BtnPrimary, BtnSecondary, RouterLink],
+  imports: [DatePipe, OrderItem, CurrencyPipe, RouterLink],
   templateUrl: './order-card.html',
   styleUrl: './order-card.css',
 })
