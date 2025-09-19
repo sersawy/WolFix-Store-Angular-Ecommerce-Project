@@ -22,6 +22,7 @@ export class Header implements OnInit {
   user: IUser = {} as IUser;
   searchTerm: string = '';
   islogged: boolean = false;
+  searchStatus: boolean = false;
   onSearch() {
     this.searchService.setSearchTerm(this.searchTerm);
   }
@@ -30,6 +31,7 @@ export class Header implements OnInit {
       this.islogged = data;
       if (this.islogged) this.getUser();
     });
+    this.searchService.searchStatus$.subscribe((data) => (this.searchStatus = data));
   }
   getUser() {
     const data = this.authService.getUserData();

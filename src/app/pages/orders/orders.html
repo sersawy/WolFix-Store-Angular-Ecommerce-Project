@@ -11,7 +11,8 @@
     </div>
 
     <div class="orders-grid">
-      @for (item of items; track $index) {
+      @for (order of orders; track $index) {
+        <app-order-card [order]="order"></app-order-card>
       } @empty {
         <div class="orders-empty">
           <div class="orders-empty-icon">

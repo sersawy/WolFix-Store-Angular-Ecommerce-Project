@@ -1,0 +1,75 @@
+<main class="container order-details-container">
+  <div class="order-details-card">
+    <div class="order-details-header">
+      <div class="order-details-icon">
+        <i class="bi bi-receipt"></i>
+      </div>
+      <h1 class="order-details-title">Order #{{ order.id }}</h1>
+      <p class="order-details-subtitle">Placed on {{ order.created_at | date: 'MMMM d, y' }}</p>
+    </div>
+
+    <div class="order-details-body">
+      <div class="order-details-info">
+        <div class="order-details-card-section">
+          <h3><i class="bi bi-info-circle"></i> Order Info</h3>
+          <p>
+            <strong>Status:</strong>
+            <span class="order-status-badge order-status-{{ order.status }}">
+              {{ order.status }}
+            </span>
+          </p>
+          <p><strong>Total:</strong> {{ order.total | currency }}</p>
+        </div>
+
+        <div class="order-details-card-section">
+          <h3><i class="bi bi-truck"></i> Shipping</h3>
+          <p><strong>Method:</strong> Standard</p>
+          <p><strong>Address:</strong> {{ order.address }}</p>
+        </div>
+
+        <div class="order-details-card-section">
+          <h3><i class="bi bi-credit-card"></i> Payment</h3>
+          <p><strong>Method:</strong> {{ order.payment }}</p>
+          <p><strong>Status:</strong> Completed</p>
+        </div>
+      </div>
+
+      <!-- Items -->
+      <div class="order-details-items">
+        <h2>Items ({{ order.items.length }})</h2>
+        @for (item of order.items; track $index) {
+          <app-order-item [item]="item"></app-order-item>
+        }
+      </div>
+
+      <!-- Summary -->
+      <div class="order-details-summary">
+        <h3>Order Summary</h3>
+        <div class="order-details-summary-row">
+          <span>Subtotal</span>
+          <span>{{ order.total | currency }}</span>
+        </div>
+        <div class="order-details-summary-row">
+          <span>Shipping</span>
+          <span>{{ 0 | currency }}</span>
+        </div>
+        <div class="order-details-summary-row">
+          <span>Tax</span>
+          <span>{{ 0 | currency }}</span>
+        </div>
+        <div class="order-details-summary-total">
+          <span>Total</span>
+          <span>{{ order.total | currency }}</span>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="order-details-actions">
+        <app-btn-secondary
+          routerLink="/orders"
+          content='<i class="bi bi-arrow-left"></i> Back to Orders'
+        ></app-btn-secondary>
+      </div>
+    </div>
+  </div>
+</main>

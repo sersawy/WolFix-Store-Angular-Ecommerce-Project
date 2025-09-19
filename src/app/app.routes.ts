@@ -10,6 +10,7 @@ import { Products } from './pages/products/products';
 import { guestGuard } from './guards/guest-guard';
 import { OrderConfirmation } from './pages/order-confirmation/order-confirmation';
 import { Orders } from './pages/orders/orders';
+import { OrderDetail } from './pages/order-detail/order-detail';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -19,6 +20,7 @@ export const routes: Routes = [
   { path: 'category/:category', component: Category },
   { path: 'cart', component: Cart },
   { path: 'orders', component: Orders },
+  { path: 'order/:id', component: OrderDetail },
   { path: 'checkout', component: Checkout },
   { path: 'order-confirmation', component: OrderConfirmation },
   { path: 'login', component: Login, canActivate: [guestGuard] },

@@ -1,0 +1,13 @@
+<div class="order-item">
+  <div class="order-item-image image-container">
+    <app-image-with-loading class="order-item-image" [image]="item.image"> </app-image-with-loading>
+  </div>
+  <div class="order-item-details">
+    <div class="order-item-name">{{ item.name }}</div>
+    <div class="order-item-category">{{ item.category }} • {{ item.brand }}</div>
+    <div class="order-item-price">
+      {{ ((item.price * (100 - item.sale)) / 100) * item.qty | currency }}
+    </div>
+  </div>
+  <div class="order-item-quantity">Qty: {{ item.qty }}</div>
+</div>

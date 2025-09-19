@@ -72,12 +72,13 @@ export class Checkout implements OnInit {
       phone: ['', Validators.required],
       payment: ['credit-card'],
       cardNumber: ['', [Validators.required, Validators.pattern(/^\d{16}$/)]],
-      cardName: ['', Validators.required],
-      expiryMonth: ['', [Validators.required, Validators.min(1), Validators.max(12)]],
-      expiryYear: [
+      cardName: [
         '',
-        [Validators.required, Validators.min(24), Validators.max(99)], // 2-digit year, min 24 = 2024
+        Validators.required,
+        Validators.pattern("^[A-Za-z]{2,}(?:[\\s'][A-Za-z]{1,}(?:-[A-Za-z]{1,})*)+$"),
       ],
+      expiryMonth: ['', [Validators.required, Validators.min(1), Validators.max(12)]],
+      expiryYear: ['', [Validators.required, Validators.min(25), Validators.max(99)]],
       cvv: ['', [Validators.required, Validators.pattern(/^\d{3,4}$/)]],
     });
   }
@@ -119,10 +120,10 @@ export class Checkout implements OnInit {
           this.errorMessage = '';
 
           this.toastr.success(res.message, 'Order Created');
-
           console.log('Order Data:', res.data);
           this.orderService.setOrderData(res);
 
+          this.cartService.removeCurrentCart();
           this.router.navigate(['/order-confirmation']);
         } else {
           this.errorMessage = res.message;

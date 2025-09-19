@@ -253,10 +253,9 @@
                   id="expiryMonth"
                   pInputText
                   formControlName="expiryMonth"
-                  type="number"
+                  type="text"
                   class="form-control"
-                  min="1"
-                  max="12"
+                  mask="00"
                 />
                 <label for="expiryMonth">MM</label>
               </p-floatlabel>
@@ -275,10 +274,9 @@
                   id="expiryYear"
                   pInputText
                   formControlName="expiryYear"
-                  type="number"
+                  type="text"
                   class="form-control"
-                  min="24"
-                  max="99"
+                  mask="00"
                 />
                 <label for="expiryYear">YY</label>
               </p-floatlabel>
@@ -299,6 +297,7 @@
                 formControlName="cvv"
                 type="text"
                 mask="0000"
+                [validation]="false"
                 class="form-control"
                 (focus)="cardPreview.toggleFlip(true)"
                 (blur)="cardPreview.toggleFlip(false)"
@@ -320,6 +319,7 @@
                 pInputText
                 formControlName="cardName"
                 type="text"
+                mask="S* S* S* S*"
                 class="form-control"
               />
               <label for="cardName">Name on Card</label>

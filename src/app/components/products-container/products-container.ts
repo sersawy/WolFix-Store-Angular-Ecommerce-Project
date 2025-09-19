@@ -1,4 +1,5 @@
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { SearchService } from './../../services/search-service';
+import { Component, EventEmitter, inject, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { ProductsApiService } from '../../services/products-api-service';
 import { IProductsApi } from '../../models/iproducts-api';
 import { ProductCard } from '../product-card/product-card';
@@ -12,12 +13,13 @@ import { IPagination } from '../../models/ipagination';
   templateUrl: './products-container.html',
   styleUrl: './products-container.css',
 })
-export class ProductsContainer {
+export class ProductsContainer implements OnInit, OnDestroy {
   @Input() products!: IProductsApi[];
   @Input() total!: number;
   @Input() title: string = '';
   @Output() sortChanged: EventEmitter<string> = new EventEmitter<string>();
   @Output() pageChanged: EventEmitter<IPagination> = new EventEmitter<IPagination>();
+  searchService = inject(SearchService);
   sortType: string = 'relevance';
 
   first: number = 0;
@@ -30,5 +32,11 @@ export class ProductsContainer {
     this.rows = event.rows ?? 5;
     window.scrollTo({ top: 300, behavior: 'smooth' });
     this.pageChanged.emit({ limit: this.rows, offset: this.first });
+  }
+  ngOnInit(): void {
+    this.searchService.show();
+  }
+  ngOnDestroy(): void {
+    this.searchService.hide();
   }
 }
