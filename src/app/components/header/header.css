@@ -113,7 +113,8 @@
   transition: all var(--transition-fast);
 }
 
-.dropdown-item:hover {
+.dropdown-item:hover,
+.dropdown-item.active {
   background: var(--primary-color);
   color: var(--secondary-color);
 }

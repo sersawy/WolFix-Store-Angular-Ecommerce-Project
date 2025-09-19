@@ -2,7 +2,7 @@ import { CartService } from './../../services/cart-service';
 import { Component, inject, OnInit } from '@angular/core';
 import { BtnPrimary } from '../buttons/btn-primary/btn-primary';
 import { BtnSecondary } from '../buttons/btn-secondary/btn-secondary';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { SearchService } from '../../services/search-service';
 import { SearchBar } from '../search-bar/search-bar';
@@ -11,7 +11,7 @@ import { IUser } from '../../models/iauth-api';
 
 @Component({
   selector: 'app-header',
-  imports: [BtnPrimary, BtnSecondary, RouterLink, FormsModule, SearchBar],
+  imports: [BtnPrimary, BtnSecondary, RouterLink, FormsModule, SearchBar, RouterLinkActive],
   templateUrl: './header.html',
   styleUrl: './header.css',
 })

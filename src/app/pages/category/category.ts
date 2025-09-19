@@ -32,12 +32,15 @@ export class Category implements OnInit, OnDestroy {
   category = this.activateRoute.snapshot.paramMap.get('category');
   private destroy$ = new Subject<void>();
   ngOnInit(): void {
-    if (!this.category) return;
-    this.getAllProducts();
-    this.searchService.searchTerm$.pipe(takeUntil(this.destroy$)).subscribe((searchTerm) => {
-      this.filterData.search = searchTerm;
+    this.activateRoute.paramMap.subscribe((params) => {
+      this.category = params.get('category');
       if (!this.category) return;
       this.getAllProducts();
+      this.searchService.searchTerm$.pipe(takeUntil(this.destroy$)).subscribe((searchTerm) => {
+        this.filterData.search = searchTerm;
+        if (!this.category) return;
+        this.getAllProducts();
+      });
     });
   }
   onFiltersChanged(filters: IFilter) {
@@ -52,7 +55,7 @@ export class Category implements OnInit, OnDestroy {
         this.category!,
         this.pagination.limit,
         this.pagination.offset,
-        this.filterData
+        this.filterData,
       )
       .subscribe((data) => {
         this.products = data.products;

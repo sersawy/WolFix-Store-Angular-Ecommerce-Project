@@ -43,7 +43,6 @@ import { IOrder } from '../../models/iorder';
     CommonModule,
     CardPreview,
     NgxMaskDirective,
-    NgxMaskPipe,
     CheckoutItem,
   ],
   templateUrl: './checkout.html',
