@@ -36,11 +36,17 @@
             routerLink="/"
             content='<i class="bi bi-arrow-left"></i> Continue Shopping'
           ></app-btn-secondary>
-
-          <app-btn-primary
-            routerLink="/checkout"
-            content='<i class="bi bi-lock-fill"></i> Checkout'
-          ></app-btn-primary>
+          @if (islogged) {
+            <app-btn-primary
+              routerLink="/checkout"
+              content='<i class="bi bi-lock-fill"></i> Checkout'
+            ></app-btn-primary>
+          } @else {
+            <app-btn-primary
+              routerLink="/login"
+              content='<i class="bi bi-lock-fill"></i> Login To Checkout'
+            ></app-btn-primary>
+          }
         </div>
       </div>
     </div>

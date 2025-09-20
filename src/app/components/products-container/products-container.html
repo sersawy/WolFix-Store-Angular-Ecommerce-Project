@@ -27,10 +27,18 @@
     </button>
   </div>
   <div id="productsContainer" class="row g-4">
-    @for(product of products ;track product.id){
-    <div class="col-sm-6 col-xl-4 col-xxl-3">
-      <app-product-card [product]="product"></app-product-card>
-    </div>
+    @for (product of products; track product.id) {
+      <div class="col-sm-6 col-xl-4 col-xxl-3">
+        <app-product-card [product]="product"></app-product-card>
+      </div>
+    } @empty {
+      <div class="no-products-state">
+        <div class="no-products-icon">
+          <i class="bi bi-search"></i>
+        </div>
+        <h3>No Products Found</h3>
+        <p>Try adjusting your filters or search terms to find what you're looking for.</p>
+      </div>
     }
   </div>
   <nav class="pagination-container">

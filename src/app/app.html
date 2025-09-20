@@ -10,3 +10,7 @@
 </ngx-spinner>
 <router-outlet></router-outlet>
 <app-footer></app-footer>
+
+<button class="back-to-top" [class.visible]="showScroll" (click)="scrollToTop()">
+  <i class="bi bi-arrow-up"></i>
+</button>

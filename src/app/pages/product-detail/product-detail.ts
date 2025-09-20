@@ -62,10 +62,17 @@ export class ProductDetail implements OnInit {
       this.spinner.show();
       this.id = Number(params.get('id'));
       if (!this.id) this.router.navigate(['/404']);
-      this.productsService.getProductById(this.id).subscribe((data) => {
-        this.product = data;
-        this.setBreadcrumb();
-        this.getRelatedProducts();
+      this.productsService.getProductById(this.id).subscribe({
+        next: (data) => {
+          this.product = data;
+          if (!this.product) this.router.navigate(['/404']);
+          this.setBreadcrumb();
+          this.getRelatedProducts();
+        },
+        error: () => {
+          this.spinner.hide();
+          this.router.navigate(['/404']);
+        },
       });
     });
   }

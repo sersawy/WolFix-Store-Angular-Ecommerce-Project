@@ -121,7 +121,7 @@
 .search-container {
   position: relative;
   width: 100%;
-  max-width: 400px;
+  max-width: 300px;
 }
 .btn-secondary {
   flex: 2;

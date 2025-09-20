@@ -89,12 +89,6 @@ export class Checkout implements OnInit {
     { name: 'Menofia', code: 'ME' },
   ];
 
-  paymentMethods = [
-    { label: 'Credit Card', value: 'credit-card' },
-    { label: 'PayPal', value: 'paypal' },
-    { label: 'Apple Pay', value: 'apple-pay' },
-  ];
-
   isInvalid(control: string) {
     return (
       this.shippingForm.get(control)?.invalid &&

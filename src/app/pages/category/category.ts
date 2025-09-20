@@ -20,6 +20,7 @@ export class Category implements OnInit, OnDestroy {
   private activateRoute = inject(ActivatedRoute);
   private searchService = inject(SearchService);
   private spinner = inject(NgxSpinnerService);
+  private router = inject(Router);
 
   products: IProductsApi[] = [];
   filteredProducts: IProductsApi[] = [];
@@ -30,6 +31,7 @@ export class Category implements OnInit, OnDestroy {
   filterData: IFilter = {} as IFilter;
   pagination: IPagination = { limit: 5, offset: 0 };
   category = this.activateRoute.snapshot.paramMap.get('category');
+  firstStatus: boolean = true;
   private destroy$ = new Subject<void>();
   ngOnInit(): void {
     this.activateRoute.paramMap.subscribe((params) => {
@@ -57,14 +59,25 @@ export class Category implements OnInit, OnDestroy {
         this.pagination.offset,
         this.filterData,
       )
-      .subscribe((data) => {
-        this.products = data.products;
-        this.filteredProducts = [...this.products];
-        this.brands = data.brands;
-        this.total = data.total;
-        this.minPrice = data.minPrice;
-        this.maxPrice = data.maxPrice;
-        this.spinner.hide();
+      .subscribe({
+        next: (data) => {
+          this.products = data.products;
+          if (!this.products.length && this.firstStatus) {
+            this.spinner.hide();
+            this.router.navigate(['/404']);
+          }
+          this.filteredProducts = [...this.products];
+          this.brands = data.brands;
+          this.total = data.total;
+          this.minPrice = data.minPrice;
+          this.maxPrice = data.maxPrice;
+          this.spinner.hide();
+          this.firstStatus = false;
+        },
+        error: () => {
+          this.spinner.hide();
+          this.router.navigate(['/404']);
+        },
       });
   }
   onSortChanged(sort: string) {

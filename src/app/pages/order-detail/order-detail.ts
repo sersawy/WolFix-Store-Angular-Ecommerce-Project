@@ -30,7 +30,10 @@ export class OrderDetail implements OnInit {
         this.order = data.data;
         this.spinner.hide();
       },
-      error: () => this.router.navigate(['/orders']),
+      error: () => {
+        this.spinner.hide();
+        this.router.navigate(['/404']);
+      },
     });
   }
 }
