@@ -1,0 +1,95 @@
+.about-card {
+  background: var(--card-background);
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  margin-bottom: 2rem;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.about-header {
+  background: linear-gradient(135deg, var(--primary-color), #6a5acd);
+  color: var(--secondary-color);
+  padding: 2rem;
+  text-align: center;
+}
+
+.about-icon {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+.about-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.about-subtitle {
+  font-size: 1rem;
+  opacity: 0.85;
+}
+
+.about-body {
+  padding: 2rem;
+}
+
+.about-section {
+  margin-bottom: 2rem;
+}
+
+.about-section h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.about-section p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.about-info-card {
+  background: var(--surface-color);
+  border-radius: var(--border-radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.about-info-card h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-primary);
+}
+
+.about-info-card p {
+  color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+  .about-header {
+    padding: 1.5rem;
+  }
+
+  .about-title {
+    font-size: 1.5rem;
+  }
+
+  .about-section h2 {
+    font-size: 1.2rem;
+  }
+}

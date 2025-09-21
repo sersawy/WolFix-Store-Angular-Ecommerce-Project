@@ -78,3 +78,6 @@
   border-top: 1px solid var(--border-color);
   color: var(--text-secondary);
 }
+a {
+  cursor: pointer;
+}

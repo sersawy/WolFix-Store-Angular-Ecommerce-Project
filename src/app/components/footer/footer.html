@@ -18,34 +18,42 @@
           </a>
         </div>
       </div>
+
       <div class="footer-section">
         <h4>Quick Links</h4>
         <ul class="footer-links">
-          <li><a href="#">About Us</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="#">Support</a></li>
-          <li><a href="#">FAQ</a></li>
+          <li><a routerLink="/about">About Us</a></li>
+          <li><a routerLink="/contact">Contact</a></li>
+          <li><a routerLink="/products">Products</a></li>
+          @if (islogged) {
+            <li><a routerLink="/orders">My Orders</a></li>
+          }
         </ul>
       </div>
+
       <div class="footer-section">
         <h4>Categories</h4>
         <ul class="footer-links">
-          <li><a href="index.html?category=Computers">Computers</a></li>
-          <li><a href="index.html?category=Phones">Phones</a></li>
-          <li><a href="index.html?category=Audio">Audio</a></li>
-          <li><a href="index.html?category=Accessories">Accessories</a></li>
+          <li><a routerLink="/category/Electronics">Electronics</a></li>
+          <li><a routerLink="/category/Home">Home</a></li>
+          <li><a routerLink="/category/Clothing">Clothing</a></li>
         </ul>
       </div>
+
       <div class="footer-section">
         <h4>Customer Service</h4>
         <ul class="footer-links">
-          <li><a href="#">Shipping Info</a></li>
-          <li><a href="#">Returns</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms of Service</a></li>
+          <li><a routerLink="/cart">Shopping Cart</a></li>
+          @if (islogged) {
+            <li><a routerLink="/checkout">Checkout</a></li>
+            <li><a routerLink="/settings">Account Settings</a></li>
+          } @else {
+            <li><a routerLink="/login">Login</a></li>
+          }
         </ul>
       </div>
     </div>
+
     <div class="footer-bottom">
       <p>&copy; <span id="year">2025</span> WolFix Store. All rights reserved.</p>
     </div>

@@ -163,3 +163,13 @@
   padding: 1rem;
   box-shadow: var(--shadow-lg);
 }
+.forgot-password {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.forgot-password:hover {
+  color: #e6a245;
+  text-decoration: underline;
+}

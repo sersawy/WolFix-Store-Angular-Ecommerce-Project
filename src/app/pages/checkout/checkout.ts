@@ -27,6 +27,7 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { CartService } from '../../services/cart-service';
 import { CheckoutItem } from '../../components/checkout-item/checkout-item';
 import { IOrder } from '../../models/iorder';
+import { IAccount } from '../../models/iauth-api';
 
 @Component({
   selector: 'app-checkout',
@@ -53,17 +54,21 @@ export class Checkout implements OnInit {
   shippingForm!: FormGroup;
   cartService = inject(CartService);
   orderService = inject(OrderService);
+  authService = inject(AuthService);
+
   spinner = inject(NgxSpinnerService);
   toastr = inject(ToastrService);
   router = inject(Router);
   errorMessage: string = '';
+  user: IAccount = {} as IAccount;
 
   fb = inject(FormBuilder);
   ngOnInit(): void {
+    this.user = this.authService.getUserData()!;
     this.shippingForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      firstName: [this.user.name.split(' ')[0], Validators.required],
+      lastName: [this.user.name.split(' ').at(-1), Validators.required],
+      email: [this.user.email, [Validators.required, Validators.email]],
       address: ['', Validators.required],
       city: ['', Validators.required],
       state: ['', Validators.required],
@@ -78,7 +83,7 @@ export class Checkout implements OnInit {
       ],
       expiryMonth: ['', [Validators.required, Validators.min(1), Validators.max(12)]],
       expiryYear: ['', [Validators.required, Validators.min(25), Validators.max(99)]],
-      cvv: ['', [Validators.required, Validators.pattern(/^\d{3,4}$/)]],
+      cvv: ['', [Validators.required, Validators.pattern(/^\d{3}$/)]],
     });
   }
 
