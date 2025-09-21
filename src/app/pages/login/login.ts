@@ -49,7 +49,7 @@ export class Login implements OnInit {
     });
   }
   onSubmit() {
-    this.spinner.show();
+    // this.spinner.show();
 
     this.authService.login(this.formLogin.value).subscribe({
       next: () => {
@@ -59,7 +59,7 @@ export class Login implements OnInit {
       },
       error: (err) => {
         this.errorMessage = err.error.message;
-        this.spinner.hide();
+        // this.spinner.hide();
       },
       complete: this.spinner.hide,
     });

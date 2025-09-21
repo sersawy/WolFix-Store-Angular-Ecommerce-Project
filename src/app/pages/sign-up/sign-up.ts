@@ -82,7 +82,7 @@ export class SignUp implements OnInit {
       },
       error: (err) => {
         this.errorMessage = err.error.message;
-        this.spinner.hide();
+        // this.spinner.hide();
       },
       complete: this.spinner.hide,
     });

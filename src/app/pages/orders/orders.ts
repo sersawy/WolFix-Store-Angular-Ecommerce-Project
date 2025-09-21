@@ -19,12 +19,12 @@ export class Orders implements OnInit {
 
   orders: Order[] = [];
   ngOnInit(): void {
-    this.spinner.show();
+    // this.spinner.show();
 
     this.orderService.getALLOrders().subscribe({
       next: (data) => {
         this.orders = data.data;
-        this.spinner.hide();
+        // this.spinner.hide();
       },
       error: () => this.router.navigate(['/']),
     });

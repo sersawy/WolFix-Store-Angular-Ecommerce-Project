@@ -96,7 +96,7 @@ export class Checkout implements OnInit {
     );
   }
   onSubmit() {
-    this.spinner.show();
+    // this.spinner.show();
 
     const order: IOrder = {
       ...this.shippingForm.value,
@@ -122,14 +122,14 @@ export class Checkout implements OnInit {
           this.errorMessage = res.message;
         }
 
-        this.spinner.hide();
+        // this.spinner.hide();
       },
       error: (err) => {
         this.errorMessage = err.error?.message || 'Something went wrong';
-        this.spinner.hide();
+        // this.spinner.hide();
       },
       complete: () => {
-        this.spinner.hide();
+        // this.spinner.hide();
       },
     });
   }

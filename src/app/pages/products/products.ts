@@ -47,7 +47,7 @@ export class Products implements OnInit, OnDestroy {
     this.getAllProducts();
   }
   getAllProducts() {
-    this.spinner.show();
+    // this.spinner.show();
     this.productService
       .getAllProducts(this.pagination.limit, this.pagination.offset, this.filterData)
       .subscribe((data) => {
@@ -58,7 +58,7 @@ export class Products implements OnInit, OnDestroy {
         this.total = data.total;
         this.minPrice = data.minPrice;
         this.maxPrice = data.maxPrice;
-        this.spinner.hide();
+        // this.spinner.hide();
       });
   }
   onSortChanged(sort: string) {

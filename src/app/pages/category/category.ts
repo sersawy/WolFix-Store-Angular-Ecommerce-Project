@@ -51,7 +51,7 @@ export class Category implements OnInit, OnDestroy {
     this.getAllProducts();
   }
   getAllProducts() {
-    this.spinner.show();
+    // this.spinner.show();
     this.productService
       .getAllProductsByCategory(
         this.category!,
@@ -63,7 +63,7 @@ export class Category implements OnInit, OnDestroy {
         next: (data) => {
           this.products = data.products;
           if (!this.products.length && this.firstStatus) {
-            this.spinner.hide();
+            // this.spinner.hide();
             this.router.navigate(['/404']);
           }
           this.filteredProducts = [...this.products];
@@ -71,11 +71,11 @@ export class Category implements OnInit, OnDestroy {
           this.total = data.total;
           this.minPrice = data.minPrice;
           this.maxPrice = data.maxPrice;
-          this.spinner.hide();
+          // this.spinner.hide();
           this.firstStatus = false;
         },
         error: () => {
-          this.spinner.hide();
+          // this.spinner.hide();
           this.router.navigate(['/404']);
         },
       });

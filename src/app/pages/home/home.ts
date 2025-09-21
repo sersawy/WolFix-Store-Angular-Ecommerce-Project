@@ -18,10 +18,10 @@ export class Home implements OnInit {
   categories: ICategory[] = [];
 
   ngOnInit(): void {
-    this.spinner.show();
+    // this.spinner.show();
     this.productService.getAllCategories().subscribe((data) => {
       this.categories = data.categories;
-      this.spinner.hide();
+      // this.spinner.hide();
     });
   }
 }

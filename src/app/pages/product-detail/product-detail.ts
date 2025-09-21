@@ -59,7 +59,7 @@ export class ProductDetail implements OnInit {
 
   ngOnInit(): void {
     this.activateRoute.paramMap.subscribe((params) => {
-      this.spinner.show();
+      // this.spinner.show();
       this.id = Number(params.get('id'));
       if (!this.id) this.router.navigate(['/404']);
       this.productsService.getProductById(this.id).subscribe({
@@ -70,7 +70,7 @@ export class ProductDetail implements OnInit {
           this.getRelatedProducts();
         },
         error: () => {
-          this.spinner.hide();
+          // this.spinner.hide();
           this.router.navigate(['/404']);
         },
       });
@@ -97,7 +97,7 @@ export class ProductDetail implements OnInit {
     this.productsService.getAllProductsByCategory(this.product.category).subscribe((data) => {
       this.relatedProducts = data.products;
       this.relatedProducts = this.relatedProducts.sort(() => Math.random() - 0.5).slice(0, 8);
-      this.spinner.hide();
+      // this.spinner.hide();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }

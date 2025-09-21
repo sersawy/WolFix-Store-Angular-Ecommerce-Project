@@ -23,15 +23,15 @@ export class OrderDetail implements OnInit {
   id!: number;
   order: OrderFull = {} as OrderFull;
   ngOnInit(): void {
-    this.spinner.show();
+    // this.spinner.show();
     this.id = Number(this.activateRoute.snapshot.paramMap.get('id'));
     this.orderService.getOrderById(this.id).subscribe({
       next: (data) => {
         this.order = data.data;
-        this.spinner.hide();
+        // this.spinner.hide();
       },
       error: () => {
-        this.spinner.hide();
+        // this.spinner.hide();
         this.router.navigate(['/404']);
       },
     });
