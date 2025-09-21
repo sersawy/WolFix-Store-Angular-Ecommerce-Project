@@ -73,7 +73,7 @@ export class SignUp implements OnInit {
     return control?.invalid && (control.touched || control.dirty);
   }
   onSubmit() {
-    this.spinner.show();
+    // this.spinner.show();
     this.authService.register(this.formRegister.value).subscribe({
       next: () => {
         this.errorMessage = '';
@@ -84,7 +84,7 @@ export class SignUp implements OnInit {
         this.errorMessage = err.error.message;
         // this.spinner.hide();
       },
-      complete: this.spinner.hide,
+      // complete: this.spinner.hide,
     });
   }
 }

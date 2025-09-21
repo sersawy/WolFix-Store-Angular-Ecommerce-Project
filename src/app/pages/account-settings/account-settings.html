@@ -1,0 +1,221 @@
+<main class="container account-container">
+  <div class="account-header">
+    <h1 class="account-title">Account Settings</h1>
+    <p class="account-subtitle">Manage your account information and preferences</p>
+  </div>
+
+  <div class="account-card">
+    <div class="account-section">
+      <h2 class="section-title">
+        <i class="bi bi-person"></i>
+        Personal Information
+      </h2>
+      @if (errorMessageUpdate) {
+        <div class="justify-content-center">
+          <p-message severity="error">
+            {{ errorMessageUpdate }}
+          </p-message>
+        </div>
+      }
+      <form [formGroup]="formUpdate" class="settings-form my-3" (ngSubmit)="onUpdate()">
+        <div class="form-group">
+          <p-floatlabel variant="on" style="--p-floatlabel-on-active-background: #f8f9fa">
+            <input pInputText formControlName="name" type="text" class="form-control" />
+            <label for="name">Full name</label>
+          </p-floatlabel>
+          <p-message severity="error" size="small" variant="simple">
+            @if (isInvalid(formUpdate, 'name')) {
+              @if (formUpdate.get('name')?.errors?.['required']) {
+                <p-message severity="error" size="small" variant="simple"
+                  >Name is required.</p-message
+                >
+              }
+              @if (formUpdate.get('name')?.errors?.['pattern']) {
+                <p-message severity="error" size="small" variant="simple"
+                  >Please enter a valid name.</p-message
+                >
+              }
+            }
+          </p-message>
+        </div>
+        <div class="form-group center">
+          <p-floatlabel variant="on" style="--p-floatlabel-on-active-background: #f8f9fa">
+            <input pInputText formControlName="email" type="email" class="form-control" />
+            <label for="email">Email</label>
+          </p-floatlabel>
+          <p-message severity="error" size="small" variant="simple">
+            @if (isInvalid(formUpdate, 'email')) {
+              @if (formUpdate.get('email')?.errors?.['required']) {
+                <p-message severity="error" size="small" variant="simple"
+                  >Email is required.</p-message
+                >
+              }
+              @if (
+                formUpdate.get('email')?.errors?.['email'] ||
+                formUpdate.get('email')?.errors?.['pattern']
+              ) {
+                <p-message severity="error" size="small" variant="simple"
+                  >Please enter a valid email.</p-message
+                >
+              }
+            }
+          </p-message>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" [disabled]="formUpdate.invalid" class="btn-shopping">
+            <i class="bi bi-check-circle"></i> Save Changes
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div class="account-section">
+      <h2 class="section-title my-3">
+        <i class="bi bi-shield-lock"></i>
+        Change Password
+      </h2>
+      @if (errorMessagePassword) {
+        <div class="justify-content-center">
+          <p-message severity="error">
+            {{ errorMessagePassword }}
+          </p-message>
+        </div>
+      }
+      <form [formGroup]="formPassword" class="settings-form my-3" (ngSubmit)="onChangePassword()">
+        <div class="form-group">
+          <p-floatlabel variant="on" style="--p-floatlabel-on-active-background: #f8f9fa">
+            <p-password
+              formControlName="oldPassword"
+              autocomplete="off"
+              [feedback]="false"
+              [toggleMask]="true"
+              size="large"
+              style="
+                --p-inputtext-background: #f8f9fa;
+                --p-inputtext-color: var(--text-primary);
+                --p-inputtext-border-color: var(--border-color);
+                --p-inputtext-focus-border-color: var(--primary-color);
+                --p-inputtext-hover-border-color: var(--border-color);
+                --p-password-overlay-background: var(--surface-color);
+                --p-password-overlay-color: #334155;
+                --p-password-meter-background: #e2e8f0;
+              "
+              inputId="oldPassword"
+            />
+
+            <label for="oldPassword">Old Password</label>
+          </p-floatlabel>
+          <p-message severity="error" size="small" variant="simple">
+            @if (
+              isInvalid(formPassword, 'oldPassword') &&
+              formPassword.get('oldPassword')?.errors?.['passwordMismatch']
+            ) {
+              <p-message severity="error" size="small" variant="simple"
+                >Passwords do not match.</p-message
+              >
+            }
+          </p-message>
+        </div>
+
+        <div class="form-group">
+          <p-floatlabel variant="on" style="--p-floatlabel-on-active-background: #f8f9fa">
+            <p-password
+              formControlName="password"
+              autocomplete="off"
+              [toggleMask]="true"
+              size="large"
+              style="
+                --p-inputtext-background: #f8f9fa;
+                --p-inputtext-color: var(--text-primary);
+                --p-inputtext-border-color: var(--border-color);
+                --p-inputtext-focus-border-color: var(--primary-color);
+                --p-inputtext-hover-border-color: var(--border-color);
+                --p-password-overlay-background: var(--surface-color);
+                --p-password-overlay-color: #334155;
+                --p-password-meter-background: #e2e8f0;
+              "
+              inputId="password"
+            >
+              <ng-template #footer>
+                <p-divider />
+                <ul class="pl-2 my-0 leading-normal">
+                  <li>At least one lowercase</li>
+                  <li>At least one uppercase</li>
+                  <li>At least one numeric</li>
+                  <li>Minimum 8 characters</li>
+                </ul>
+              </ng-template>
+            </p-password>
+            <label for="password">New Password</label>
+          </p-floatlabel>
+          <p-message severity="error" size="small" variant="simple">
+            @if (isInvalid(formPassword, 'password')) {
+              @if (formPassword.get('password')?.errors?.['required']) {
+                <p-message severity="error" size="small" variant="simple"
+                  >password is required.</p-message
+                >
+              } @else if (formPassword.get('password')?.errors?.['lowercase']) {
+                <p-message severity="error" size="small" variant="simple"
+                  >Password must contain at least one lowercase letter.</p-message
+                >
+              } @else if (formPassword.get('password')?.errors?.['lowercase']) {
+                <p-message severity="error" size="small" variant="simple"
+                  >Password must contain at least one lowercase letter.</p-message
+                >
+              } @else if (formPassword.get('password')?.errors?.['uppercase']) {
+                <p-message severity="error" size="small" variant="simple"
+                  >Password must contain at least one uppercase letter.</p-message
+                >
+              } @else if (formPassword.get('password')?.errors?.['minlength']) {
+                <p-message severity="error" size="small" variant="simple"
+                  >Password must be at least 8 characters long.</p-message
+                >
+              }
+            }
+          </p-message>
+        </div>
+        <div class="form-group">
+          <p-floatlabel variant="on" style="--p-floatlabel-on-active-background: #f8f9fa">
+            <p-password
+              formControlName="confirmPassword"
+              autocomplete="off"
+              [feedback]="false"
+              [toggleMask]="true"
+              size="large"
+              style="
+                --p-inputtext-background: #f8f9fa;
+                --p-inputtext-color: var(--text-primary);
+                --p-inputtext-border-color: var(--border-color);
+                --p-inputtext-focus-border-color: var(--primary-color);
+                --p-inputtext-hover-border-color: var(--border-color);
+                --p-password-overlay-background: var(--surface-color);
+                --p-password-overlay-color: #334155;
+                --p-password-meter-background: #e2e8f0;
+              "
+              inputId="confirmPassword"
+            />
+
+            <label for="confirmPassword">Confirm New Password</label>
+          </p-floatlabel>
+          <p-message severity="error" size="small" variant="simple">
+            @if (
+              isInvalid(formPassword, 'confirmPassword') &&
+              formPassword.get('confirmPassword')?.errors?.['passwordMismatch']
+            ) {
+              <p-message severity="error" size="small" variant="simple"
+                >Passwords do not match.</p-message
+              >
+            }
+          </p-message>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" [disabled]="formPassword.invalid" class="btn-shopping">
+            <i class="bi bi-key"></i> Update Password
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>

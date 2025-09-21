@@ -113,7 +113,7 @@ export class Checkout implements OnInit {
           this.errorMessage = '';
 
           this.toastr.success(res.message, 'Order Created');
-          console.log('Order Data:', res.data);
+          // console.log('Order Data:', res.data);
           this.orderService.setOrderData(res);
 
           this.cartService.removeCurrentCart();

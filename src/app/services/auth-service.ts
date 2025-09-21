@@ -2,7 +2,15 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { API_URLS } from '../constants/api_urls';
-import { IAuthApi, IJwtPayload, ILogin, IRegister } from '../models/iauth-api';
+import {
+  IAccount,
+  IAuthApi,
+  IChangePassword,
+  IJwtPayload,
+  ILogin,
+  IRegister,
+  IUpdateProfile,
+} from '../models/iauth-api';
 import { jwtDecode } from 'jwt-decode';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -16,6 +24,8 @@ export class AuthService {
   toastr = inject(ToastrService);
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
   islogged$ = this.isLoggedInSubject.asObservable();
+  private userDateInSubject = new BehaviorSubject<IAccount>({} as IAccount);
+  userDate$ = this.userDateInSubject.asObservable();
   private tokenKey = 'token';
   login(data: ILogin): Observable<IAuthApi> {
     return this.http.post<IAuthApi>(API_URLS.auth.login, data).pipe(
@@ -27,6 +37,22 @@ export class AuthService {
   }
   register(data: IRegister): Observable<IAuthApi> {
     return this.http.post<IAuthApi>(API_URLS.auth.register, data);
+  }
+  updateProfile(data: IUpdateProfile): Observable<IAuthApi> {
+    return this.http.post<IAuthApi>(API_URLS.auth.updateProfile, data).pipe(
+      tap((res) => {
+        res.data ? localStorage.setItem(this.tokenKey, res.data.token) : '';
+        this.userDateInSubject.next(this.getUserData()!);
+      }),
+    );
+  }
+  changePassword(data: IChangePassword): Observable<IAuthApi> {
+    return this.http.post<IAuthApi>(API_URLS.auth.changePassword, data).pipe(
+      tap((res) => {
+        res.data ? localStorage.setItem(this.tokenKey, res.data.token) : '';
+        this.userDateInSubject.next(this.getUserData()!);
+      }),
+    );
   }
   logout() {
     localStorage.removeItem(this.tokenKey);

@@ -1,0 +1,209 @@
+.account-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.account-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.account-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.account-subtitle {
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+.account-card {
+  background: var(--card-background);
+  border-radius: var(--border-radius-xl);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  margin-bottom: 2rem;
+}
+
+.account-section {
+  margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.account-section:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.password-toggle {
+  position: relative;
+}
+
+.password-toggle .form-control {
+  padding-right: 3rem;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+.toggle-password:hover {
+  color: var(--text-primary);
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+.settings-form .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.settings-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.settings-form .form-control {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: var(--border-radius);
+  background: var(--surface-color);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  transition: all var(--transition-fast);
+}
+
+.settings-form .form-control:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(254, 180, 81, 0.25);
+}
+
+.settings-form .btn-primary {
+  width: 100%;
+  padding: 0.875rem;
+  background: var(--primary-color);
+  color: var(--secondary-color);
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  margin-top: 0.5rem;
+}
+
+.settings-form .btn-primary:hover {
+  background: #e6a245;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+:host ::ng-deep .p-password {
+  display: block;
+  width: 100%;
+}
+
+/* Input field */
+:host ::ng-deep .p-password-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: var(--border-radius);
+  background: var(--surface-color);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  transition: all var(--transition-fast);
+}
+
+:host ::ng-deep .p-password-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(254, 180, 81, 0.25) !important;
+}
+
+/* Mask/unmask icons */
+:host ::ng-deep .p-password-mask-icon,
+:host ::ng-deep .p-password-unmask-icon,
+:host ::ng-deep .p-password-clear-icon {
+  color: var(--text-secondary);
+  transition: color var(--transition-fast);
+}
+
+:host ::ng-deep .p-password-mask-icon:hover,
+:host ::ng-deep .p-password-unmask-icon:hover,
+:host ::ng-deep .p-password-clear-icon:hover {
+  color: var(--primary-color);
+}
+
+/* Strength meter */
+:host ::ng-deep .p-password-meter {
+  height: 6px;
+  border-radius: var(--border-radius);
+  background: #e2e8f0; /* fallback */
+}
+
+/* Meter states */
+:root {
+  --p-password-strength-weak-background: #f87171; /* red */
+  --p-password-strength-medium-background: #facc15; /* yellow */
+  --p-password-strength-strong-background: #4ade80; /* green */
+}
+
+/* Overlay box (rules list) */
+:host ::ng-deep .p-password-overlay {
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  color: var(--text-primary);
+  padding: 1rem;
+  box-shadow: var(--shadow-lg);
+}
+/* :host ::ng-deep .p-message-content {
+  justify-content: center;
+} */
+.btn-shopping {
+  background: var(--primary-color);
+  color: var(--secondary-color);
+  border: none;
+  padding: 0.875rem 1.5rem;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-shopping:hover {
+  background: #e6a245;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+  color: var(--secondary-color);
+  text-decoration: none;
+}
+.btn-shopping:disabled {
+  background: var(--text-muted);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}

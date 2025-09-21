@@ -12,6 +12,8 @@ export const API_URLS = {
     login: `${environment.baseUrl}/auth/?action=login`,
     register: `${environment.baseUrl}/auth/?action=register`,
     verify: `${environment.baseUrl}/auth/?action=verify`,
+    updateProfile: `${environment.baseUrl}/auth/?action=updateProfile`,
+    changePassword: `${environment.baseUrl}/auth/?action=changePassword`,
   },
   orders: {
     create: `${environment.baseUrl}/orders/`,

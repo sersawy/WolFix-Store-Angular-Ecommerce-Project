@@ -89,11 +89,11 @@
                   type="button"
                   data-bs-toggle="dropdown"
                 >
-                  <i class="bi bi-person-circle"></i> {{ user.name }}
+                  <i class="bi bi-person-circle"></i> {{ user?.name }}
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
                   <li>
-                    <a class="dropdown-item" href="account.html"
+                    <a class="dropdown-item" routerLinkActive="active" routerLink="/settings"
                       ><i class="bi bi-gear"></i> Account Settings</a
                     >
                   </li>

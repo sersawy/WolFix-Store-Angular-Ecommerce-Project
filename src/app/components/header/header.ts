@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { SearchService } from '../../services/search-service';
 import { SearchBar } from '../search-bar/search-bar';
 import { AuthService } from '../../services/auth-service';
-import { IUser } from '../../models/iauth-api';
+import { IAccount, IUser } from '../../models/iauth-api';
 
 @Component({
   selector: 'app-header',
@@ -19,7 +19,7 @@ export class Header implements OnInit {
   public cartService = inject(CartService);
   private searchService = inject(SearchService);
   authService = inject(AuthService);
-  user: IUser = {} as IUser;
+  user: IAccount | null = {} as IAccount;
   searchTerm: string = '';
   islogged: boolean = false;
   searchStatus: boolean = false;
@@ -29,13 +29,18 @@ export class Header implements OnInit {
   ngOnInit(): void {
     this.authService.islogged$.subscribe((data) => {
       this.islogged = data;
-      if (this.islogged) this.getUser();
+      if (this.islogged) {
+        this.authService.userDate$.subscribe((dataUser) => {
+          this.user = dataUser?.id ? dataUser : this.authService.getUserData();
+        });
+      }
     });
+
     this.searchService.searchStatus$.subscribe((data) => (this.searchStatus = data));
   }
-  getUser() {
-    const data = this.authService.getUserData();
-    if (!data) return;
-    this.user = data;
-  }
+  // getUser() {
+  //   const data = this.authService.getUserData();
+  //   if (!data) return;
+  //   this.user = data;
+  // }
 }
