@@ -17,13 +17,11 @@ import { AuthService } from '../../services/auth-service';
 import { passwordValidator } from '../../validators/password-validator';
 import { passwordMatchValidator } from '../../validators/password-match-validator';
 import { ToastrService } from 'ngx-toastr';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { IAccount } from '../../models/iauth-api';
 
 @Component({
   selector: 'app-account-settings',
   imports: [
-    RouterLink,
     ReactiveFormsModule,
     PasswordModule,
     FloatLabelModule,
@@ -47,8 +45,6 @@ export class AccountSettings implements OnInit {
   errorMessagePassword: string = '';
 
   ngOnInit(): void {
-    // console.log(this.accountData);
-
     this.formUpdate = this.fb.group({
       name: [
         this.accountData?.name,

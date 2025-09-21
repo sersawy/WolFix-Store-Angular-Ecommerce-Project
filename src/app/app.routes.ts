@@ -14,6 +14,7 @@ import { OrderDetail } from './pages/order-detail/order-detail';
 import { NotFound } from './pages/not-found/not-found';
 import { authGuard } from './guards/auth-guard';
 import { AccountSettings } from './pages/account-settings/account-settings';
+import { ContactUs } from './pages/contact-us/contact-us';
 
 export const routes: Routes = [
   { path: '', component: Home, title: 'WolFix Store' },
@@ -67,6 +68,11 @@ export const routes: Routes = [
     component: AccountSettings,
     canActivate: [authGuard],
     title: 'Account Settings - WolFix Store',
+  },
+  {
+    path: 'contact',
+    component: ContactUs,
+    title: 'Contact Us - WolFix Store',
   },
   { path: '**', component: NotFound, title: 'Page Not Found - WolFix Store' },
 ];
