@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Component, inject, OnInit } from '@angular/core';
 import { OrderItem } from '../../components/order-item/order-item';
 import { OrderService } from '../../services/order-service';
@@ -8,7 +8,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-orders',
-  imports: [OrderCard],
+  imports: [OrderCard, RouterLink],
   templateUrl: './orders.html',
   styleUrl: './orders.css',
 })
