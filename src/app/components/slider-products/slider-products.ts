@@ -7,10 +7,11 @@ import {
   NgbSlideEventSource,
 } from '@ng-bootstrap/ng-bootstrap';
 import { IProductsApi } from '../../models/iproducts-api';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-slider-products',
-  imports: [NgbCarouselModule],
+  imports: [NgbCarouselModule, RouterLink],
   templateUrl: './slider-products.html',
   styleUrl: './slider-products.css',
 })

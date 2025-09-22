@@ -7,23 +7,19 @@
     (slide)="onSlide($event)"
   >
     @for (product of products; track product.id; let i = $index) {
-    <ng-template ngbSlide>
-      <div class="slide">
-        <!-- <div class="carousel-caption">
-          <h3>{{ product.name }}</h3>
-        </div> -->
+      <ng-template ngbSlide>
+        <div class="slide">
+          <!-- <div class="carousel-caption">
+            <h3>{{ product.name }}</h3>
+          </div> -->
 
-        <a
-          href="https://www.google.fr/?q=Number+{{ i + 1 }}"
-          target="_blank"
-          rel="nofollow noopener noreferrer"
-        >
-          <div class="picsum-img-wrapper">
-            <img [src]="product.sliderImage" [alt]="product.name" />
-          </div>
-        </a>
-      </div>
-    </ng-template>
+          <a [routerLink]="'/product/' + product.id" rel="nofollow noopener noreferrer">
+            <div class="picsum-img-wrapper">
+              <img [src]="product.sliderImage" [alt]="product.name" />
+            </div>
+          </a>
+        </div>
+      </ng-template>
     }
   </ngb-carousel>
 </div>

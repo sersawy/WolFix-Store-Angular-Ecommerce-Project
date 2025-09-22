@@ -34,7 +34,6 @@
         </div>
       </div>
 
-      <!-- Items -->
       <div class="order-details-items">
         <h2>Items ({{ order.items.length }})</h2>
         @for (item of order.items; track $index) {
@@ -42,7 +41,6 @@
         }
       </div>
 
-      <!-- Summary -->
       <div class="order-details-summary">
         <h3>Order Summary</h3>
         <div class="order-details-summary-row">
@@ -63,7 +61,6 @@
         </div>
       </div>
 
-      <!-- Actions -->
       <div class="order-details-actions">
         <app-btn-secondary
           routerLink="/orders"

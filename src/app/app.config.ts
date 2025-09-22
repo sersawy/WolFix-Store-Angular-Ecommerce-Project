@@ -32,7 +32,7 @@ export const appConfig: ApplicationConfig = {
       theme: { preset: Aura },
       // theme: { preset: Aura, options: { darkModeSelector: '.p-dark' } },
     }),
-    provideAnimations(), // required animations providers
+    provideAnimations(),
     provideToastr({
       positionClass: 'toast-bottom-right',
       closeButton: true,

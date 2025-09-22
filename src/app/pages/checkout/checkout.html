@@ -5,9 +5,7 @@
   </div>
 
   <div class="checkout-grid">
-    <!-- Left Side (Forms) -->
     <div class="checkout-forms">
-      <!-- Shipping Information -->
       <div class="checkout-card">
         <h2 class="section-title">
           <i class="bi bi-truck"></i>
@@ -206,7 +204,6 @@
         </form>
       </div>
 
-      <!-- Payment Method -->
       <div class="checkout-card" [formGroup]="shippingForm">
         <h2 class="section-title">
           <i class="bi bi-credit-card"></i>
@@ -223,7 +220,6 @@
               (focusout)="cardPreview.toggleFlip(false)"
             ></app-card-preview>
           </div>
-          <!-- Card Number -->
           <div class="form-group">
             <p-floatlabel variant="on" style="--p-floatlabel-on-active-background: #f8f9fa">
               <input
@@ -245,7 +241,6 @@
             </p-message>
           </div>
 
-          <!-- Expiry Date (Month + Year) -->
           <div class="form-grid">
             <div class="form-group">
               <p-floatlabel variant="on" style="--p-floatlabel-on-active-background: #f8f9fa">
@@ -288,7 +283,6 @@
             </div>
           </div>
 
-          <!-- CVV -->
           <div class="form-group">
             <p-floatlabel variant="on" style="--p-floatlabel-on-active-background: #f8f9fa">
               <input
@@ -311,7 +305,6 @@
             </p-message>
           </div>
 
-          <!-- Cardholder Name -->
           <div class="form-group">
             <p-floatlabel variant="on" style="--p-floatlabel-on-active-background: #f8f9fa">
               <input
@@ -336,7 +329,6 @@
       </div>
     </div>
 
-    <!-- Right Side (Summary) -->
     <div class="checkout-summary">
       <div class="checkout-card">
         <h2 class="section-title">
@@ -345,7 +337,6 @@
         </h2>
 
         <div class="checkout-items">
-          <!-- Example Item -->
           @for (item of cartService.get(); track $index) {
             <app-checkout-item [item]="item"></app-checkout-item>
           }
